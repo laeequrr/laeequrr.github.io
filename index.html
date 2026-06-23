@@ -1,183 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Laeeq Ur Rehman | IT Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --white:#ffffff;
-  --off:#f5f5f7;
-  --lightg:#e8e8ed;
-  --midg:#d2d2d7;
-  --textg:#6e6e73;
-  --dark:#1d1d1f;
-  --blue:#0071e3;
-  --blue2:#0077ed;
-  --lightblue:#e8f0fe;
-  --green:#34c759;
-  --orange:#ff9500;
-  --purple:#5e5ce6;
-  --red:#ff3b30;
+  --bg:#fff;--bg2:#f5f5f7;--bg3:#e8e8ed;
+  --text:#1d1d1f;--text2:#6e6e73;--text3:#86868b;
+  --blue:#0071e3;--green:#34c759;--orange:#ff9500;
+  --border:rgba(0,0,0,0.08);--card:#fff;
+  --nav:rgba(255,255,255,0.88);
 }
-html{scroll-behavior:smooth;font-size:16px;}
-body{font-family:'Inter',sans-serif;background:var(--off);color:var(--dark);-webkit-font-smoothing:antialiased;}
+[data-theme="dark"]{
+  --bg:#000;--bg2:#1c1c1e;--bg3:#2c2c2e;
+  --text:#f5f5f7;--text2:#a1a1a6;--text3:#6e6e73;
+  --blue:#2997ff;--border:rgba(255,255,255,0.1);
+  --card:#1c1c1e;--nav:rgba(0,0,0,0.88);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s;}
 a{color:var(--blue);text-decoration:none;}
 img{display:block;max-width:100%;}
 
 /* NAV */
-nav{position:fixed;top:0;width:100%;z-index:300;background:rgba(255,255,255,0.88);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);}
-.nav-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 1.5rem;}
-.nav-logo{font-size:1rem;font-weight:700;color:var(--dark);letter-spacing:-0.3px;}
-.nav-links{display:flex;gap:1.5rem;list-style:none;}
-.nav-links a{color:var(--dark);font-size:0.78rem;opacity:0.75;transition:opacity 0.2s;font-weight:400;}
-.nav-links a:hover{opacity:1;}
+nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--border);transition:background .4s;}
+.nav-in{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 1.25rem;}
+.nav-logo{font-size:.9rem;font-weight:700;color:var(--text);}
+.nav-links{display:flex;gap:1.1rem;list-style:none;align-items:center;}
+.nav-links a{color:var(--text2);font-size:.72rem;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:1.5px;background:var(--text);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--nav);backdrop-filter:blur(20px);border-bottom:.5px solid var(--border);padding:1rem 1.25rem;z-index:998;flex-direction:column;gap:.75rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text);font-size:.9rem;padding:.5rem 0;border-bottom:.5px solid var(--border);}
+.theme-toggle{width:34px;height:19px;border-radius:10px;background:var(--bg3);border:none;cursor:pointer;position:relative;flex-shrink:0;}
+.theme-toggle::after{content:'';position:absolute;width:15px;height:15px;border-radius:50%;background:var(--text);top:2px;left:2px;transition:transform .3s;}
+[data-theme="dark"] .theme-toggle::after{transform:translateX(15px);}
 
-/* PROFILE HERO */
-#profile{background:var(--white);padding-top:52px;}
-.cover{height:200px;background:linear-gradient(135deg,#1d1d1f 0%,#2d2d2f 40%,#0071e3 100%);position:relative;}
-.cover-inner{max-width:1080px;margin:0 auto;height:100%;position:relative;}
-.profile-card{max-width:1080px;margin:0 auto;padding:0 2rem;position:relative;}
-.avatar-area{display:flex;align-items:flex-end;gap:1.5rem;margin-top:-60px;margin-bottom:1rem;}
-.avatar{width:120px;height:120px;border-radius:50%;border:4px solid #fff;object-fit:cover;object-position:center top;background:var(--lightg);box-shadow:0 4px 20px rgba(0,0,0,0.15);flex-shrink:0;}
-.avatar-fallback{width:120px;height:120px;border-radius:50%;border:4px solid #fff;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.5rem;font-weight:800;flex-shrink:0;box-shadow:0 4px 20px rgba(0,0,0,0.15);}
-.profile-actions{margin-left:auto;display:flex;gap:0.75rem;align-items:center;padding-bottom:0.5rem;}
-.btn-blue{padding:0.55rem 1.25rem;background:var(--blue);color:#fff;border-radius:980px;font-size:0.82rem;font-weight:500;transition:background 0.2s;cursor:pointer;border:none;}
-.btn-blue:hover{background:var(--blue2);}
-.btn-out{padding:0.55rem 1.25rem;border:1.5px solid var(--blue);color:var(--blue);border-radius:980px;font-size:0.82rem;font-weight:500;transition:all 0.2s;cursor:pointer;background:transparent;}
-.btn-out:hover{background:var(--blue);color:#fff;}
-.profile-name{font-size:1.75rem;font-weight:700;letter-spacing:-0.5px;color:var(--dark);margin-bottom:0.2rem;}
-.profile-title{font-size:1rem;color:var(--dark);margin-bottom:0.4rem;}
-.profile-loc{font-size:0.85rem;color:var(--textg);margin-bottom:0.75rem;}
-.profile-loc span{color:var(--blue);font-weight:500;cursor:pointer;}
-.profile-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;}
-.ptag{font-size:0.75rem;padding:3px 12px;border-radius:980px;background:var(--off);border:1px solid var(--midg);color:var(--textg);}
-.profile-stats{display:flex;gap:2rem;padding:1rem 0;border-top:1px solid var(--lightg);border-bottom:1px solid var(--lightg);margin-bottom:0;}
-.pstat{text-align:left;}
-.pstat-num{font-size:1.3rem;font-weight:700;color:var(--dark);}
-.pstat-lbl{font-size:0.72rem;color:var(--textg);text-transform:uppercase;letter-spacing:1px;}
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--bg);padding:80px 1.5rem 60px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;font-size:clamp(6rem,25vw,18rem);font-weight:900;color:var(--bg2);letter-spacing:-10px;user-select:none;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+.hero-in{position:relative;z-index:1;}
+.eyebrow{font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:1rem;}
+.hero-name{font-size:clamp(2.8rem,9vw,7rem);font-weight:800;letter-spacing:-3px;line-height:.95;color:var(--text);margin-bottom:.75rem;}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.5rem);font-weight:300;color:var(--text2);margin-bottom:1.25rem;}
+.hero-desc{font-size:.9rem;color:var(--text2);max-width:480px;line-height:1.7;margin:0 auto 2rem;}
+.hero-ctas{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-p{padding:.65rem 1.4rem;background:var(--blue);color:#fff;border-radius:980px;font-size:.82rem;font-weight:500;transition:all .2s;display:inline-block;}
+.btn-p:hover{opacity:.85;transform:scale(1.02);}
+.btn-g{padding:.65rem 1.4rem;border:1.5px solid var(--blue);color:var(--blue);border-radius:980px;font-size:.82rem;font-weight:500;background:transparent;display:inline-block;transition:all .2s;}
+.btn-g:hover{background:var(--blue);color:#fff;}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
+.hstat-num{font-size:clamp(1.4rem,4vw,2rem);font-weight:700;letter-spacing:-1px;color:var(--text);}
+.hstat-lbl{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;}
+.scroll-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:var(--text3);font-size:.7rem;display:flex;flex-direction:column;align-items:center;gap:.3rem;animation:bob 2s infinite;}
+.scroll-arrow{width:16px;height:16px;border-right:1.5px solid var(--text3);border-bottom:1.5px solid var(--text3);transform:rotate(45deg);}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(5px);}}
 
-/* LAYOUT */
-.page-body{max-width:1080px;margin:0 auto;padding:1.5rem 2rem;display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start;}
-.main-col{display:flex;flex-direction:column;gap:1.25rem;}
-.side-col{display:flex;flex-direction:column;gap:1.25rem;}
+/* PROFILE */
+#profile{background:var(--bg2);}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;min-height:520px;}
+.profile-left{padding:clamp(2rem,6vw,5rem) clamp(1.5rem,5vw,4rem);}
+.profile-right{background:var(--bg3);display:flex;align-items:center;justify-content:center;min-height:300px;}
+.profile-photo{width:clamp(180px,30vw,280px);height:clamp(220px,36vw,340px);object-fit:cover;object-position:center top;border-radius:18px;}
+.profile-photo-fb{width:clamp(180px,30vw,280px);height:clamp(220px,36vw,340px);border-radius:18px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:5rem;font-weight:800;color:var(--blue);}
+.avail-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.profile-name{font-size:clamp(1.6rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;line-height:1.05;color:var(--text);margin-bottom:.4rem;}
+.profile-title{font-size:.9rem;color:var(--text2);margin-bottom:1rem;}
+.ppills{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem;}
+.ppill{font-size:.68rem;padding:3px 11px;border-radius:980px;background:var(--bg);border:.5px solid var(--border);color:var(--text2);}
+.pstats{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:1rem;border-top:.5px solid var(--border);}
+.pstat-num{font-size:1.4rem;font-weight:700;letter-spacing:-1px;color:var(--text);}
+.pstat-lbl{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;}
 
-/* CARD */
-.card{background:var(--white);border-radius:16px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
-.card-title{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;}
-.card-title-icon{font-size:1.1rem;margin-right:0.5rem;}
+/* ZOOM */
+.zoom-wrap{overflow:hidden;}
+.zoom-sticky{position:sticky;top:52px;height:100vh;display:flex;align-items:center;justify-content:center;}
+.zoom-content{text-align:center;padding:1.5rem;transform-origin:center;will-change:transform,opacity;}
+.zoom-title{font-size:clamp(2rem,7vw,5.5rem);font-weight:800;letter-spacing:-2px;line-height:1;color:var(--text);margin-bottom:.75rem;}
+.zoom-sub{font-size:clamp(.85rem,2vw,1.05rem);color:var(--text2);max-width:460px;margin:0 auto;line-height:1.7;}
 
-/* ABOUT */
-.about-text{font-size:0.9rem;color:var(--textg);line-height:1.8;}
-.about-text strong{color:var(--dark);}
+/* SEC HEADER */
+.sec-hd{text-align:center;margin-bottom:clamp(2rem,5vw,3rem);padding:0 1.5rem;}
+.sec-eyebrow{font-size:.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:.6rem;}
+.sec-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:700;letter-spacing:-1.5px;color:var(--text);}
 
 /* EXPERIENCE */
-.exp-item{display:grid;grid-template-columns:56px 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--lightg);transition:background 0.2s;border-radius:8px;padding:0.75rem;margin:-0.75rem;}
-.exp-item:last-child{border-bottom:none;}
-.exp-item:hover{background:var(--off);}
-.exp-logo{width:48px;height:48px;border-radius:10px;object-fit:contain;background:var(--off);padding:6px;border:1px solid var(--lightg);flex-shrink:0;}
-.exp-logo-fb{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;}
-.exp-info{}
-.exp-company{font-size:0.88rem;font-weight:700;color:var(--dark);}
-.exp-role{font-size:0.83rem;color:var(--textg);margin:0.1rem 0;}
-.exp-period{font-size:0.75rem;color:var(--textg);}
-.exp-bullets{margin-top:0.6rem;padding-left:1rem;list-style:none;}
-.exp-bullets li{font-size:0.82rem;color:var(--textg);padding:0.2rem 0;position:relative;padding-left:1rem;line-height:1.5;}
-.exp-bullets li::before{content:'·';position:absolute;left:0;color:var(--blue);font-size:1.2rem;line-height:1.2;}
-
-/* INDUSTRIES */
-.industry-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;}
-.ind-tile{background:var(--off);border-radius:12px;padding:1rem;display:flex;align-items:center;gap:0.75rem;border:1px solid var(--lightg);transition:border-color 0.2s,transform 0.2s;}
-.ind-tile:hover{border-color:var(--blue);transform:translateY(-2px);}
-.ind-icon{font-size:1.75rem;flex-shrink:0;}
-.ind-name{font-size:0.82rem;font-weight:600;color:var(--dark);}
-.ind-desc{font-size:0.73rem;color:var(--textg);margin-top:0.1rem;}
-
-/* CERTIFICATIONS */
-.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-.cert-card{background:var(--off);border-radius:14px;overflow:hidden;border:1px solid var(--lightg);transition:box-shadow 0.2s,transform 0.2s;cursor:pointer;}
-.cert-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.1);transform:translateY(-3px);}
-.cert-img-wrap{height:130px;background:linear-gradient(135deg,#1d1d1f,#2d2d2f);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-.cert-img-wrap img{width:100%;height:100%;object-fit:cover;}
-.cert-badge-icon{font-size:3rem;opacity:0.9;}
-.cert-body{padding:0.85rem;}
-.cert-name{font-size:0.82rem;font-weight:700;color:var(--dark);margin-bottom:0.2rem;}
-.cert-issuer{font-size:0.73rem;color:var(--blue);}
-.cert-date{font-size:0.7rem;color:var(--textg);margin-top:0.2rem;}
-.cert-status{display:inline-block;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:980px;margin-top:0.4rem;}
-.cert-active{background:#d1fae5;color:#065f46;}
-.cert-progress{background:#fef3c7;color:#92400e;}
-
-/* EDUCATION */
-.edu-item{display:grid;grid-template-columns:48px 1fr;gap:1rem;padding:0.75rem;border-radius:8px;transition:background 0.2s;}
-.edu-item:hover{background:var(--off);}
-.edu-logo{width:48px;height:48px;border-radius:10px;object-fit:contain;background:var(--off);padding:6px;border:1px solid var(--lightg);}
-.edu-logo-fb{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#ff9500,#ff3b30);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;}
-.edu-deg{font-size:0.88rem;font-weight:700;color:var(--dark);}
-.edu-school{font-size:0.82rem;color:var(--textg);}
-.edu-yr{font-size:0.75rem;color:var(--textg);}
-
-/* COURSES */
-.course-list{display:flex;flex-direction:column;gap:0.5rem;}
-.course-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.75rem;border-radius:10px;background:var(--off);border:1px solid var(--lightg);transition:border-color 0.2s;}
-.course-item:hover{border-color:var(--blue);}
-.course-icon{font-size:1.2rem;flex-shrink:0;}
-.course-name{font-size:0.82rem;font-weight:600;color:var(--dark);}
-.course-provider{font-size:0.73rem;color:var(--textg);}
+#experience{padding:clamp(60px,10vw,120px) 0;background:var(--bg);}
+.exp-cards{display:flex;flex-direction:column;gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.exp-card{background:var(--bg);display:grid;grid-template-columns:180px 1fr;transition:background .2s;}
+.exp-card:hover{background:var(--bg2);}
+.exp-left{padding:1.75rem 1.25rem;border-right:.5px solid var(--border);display:flex;flex-direction:column;align-items:center;text-align:center;gap:.75rem;}
+.exp-logo{width:52px;height:52px;border-radius:12px;object-fit:contain;background:var(--bg2);padding:7px;border:.5px solid var(--border);}
+.exp-logo-fb{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.78rem;}
+.exp-period{font-size:.68rem;color:var(--text3);line-height:1.5;}
+.exp-right{padding:1.75rem;}
+.exp-company{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.15rem;}
+.exp-role{font-size:.82rem;color:var(--blue);font-weight:600;margin-bottom:.2rem;}
+.exp-location{font-size:.72rem;color:var(--text3);margin-bottom:1rem;}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:.35rem;}
+.exp-list li{font-size:.82rem;color:var(--text2);padding-left:1.1rem;position:relative;line-height:1.6;}
+.exp-list li::before{content:'—';position:absolute;left:0;color:var(--blue);font-size:.75rem;top:.1rem;}
+.exp-sub-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin:.85rem 0 .35rem;padding-left:1.1rem;}
 
 /* SKILLS */
-.skills-wrap{display:flex;flex-wrap:wrap;gap:0.5rem;}
-.skill-pill{font-size:0.78rem;padding:5px 14px;border-radius:980px;background:var(--off);border:1px solid var(--lightg);color:var(--dark);transition:all 0.2s;cursor:default;}
-.skill-pill:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+#skills{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.skill-tile{background:var(--bg);padding:1.5rem;transition:background .2s;}
+.skill-tile:hover{background:var(--bg2);}
+.skill-icon{font-size:1.6rem;margin-bottom:.6rem;}
+.skill-lbl{font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;}
+.stags{display:flex;flex-wrap:wrap;gap:.3rem;}
+.stag{font-size:.68rem;padding:2px 9px;border-radius:980px;background:var(--bg2);border:.5px solid var(--border);color:var(--text2);}
 
-/* SIDE WIDGETS */
-.side-widget{background:var(--white);border-radius:16px;padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
-.widget-title{font-size:0.88rem;font-weight:700;color:var(--dark);margin-bottom:1rem;}
-.contact-row{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;border-bottom:1px solid var(--lightg);font-size:0.82rem;}
-.contact-row:last-child{border:none;}
-.contact-row-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0;}
-.contact-row-lbl{color:var(--textg);width:60px;flex-shrink:0;}
-.contact-row-val{color:var(--dark);font-weight:500;word-break:break-all;}
-.lang-bar{margin-bottom:0.75rem;}
-.lang-name{font-size:0.82rem;font-weight:600;color:var(--dark);margin-bottom:0.3rem;display:flex;justify-content:space-between;}
-.lang-track{height:5px;background:var(--lightg);border-radius:10px;overflow:hidden;}
-.lang-fill{height:100%;background:var(--blue);border-radius:10px;}
+/* CERTIFICATIONS */
+#certifications{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.cert-tile{background:var(--bg);padding:1.5rem;transition:background .2s;}
+.cert-tile:hover{background:var(--bg2);}
+.cert-badge{font-size:2rem;margin-bottom:.75rem;}
+.cert-name{font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.2rem;line-height:1.3;}
+.cert-issuer{font-size:.7rem;color:var(--blue);margin-bottom:.4rem;}
+.chip{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:980px;}
+.chip-ok{background:#d1fae5;color:#065f46;}
+.chip-wip{background:#fef3c7;color:#92400e;}
 
-/* STATUS BADGE */
-.open-badge{display:inline-flex;align-items:center;gap:0.4rem;background:#d1fae5;border:1px solid #6ee7b7;border-radius:980px;padding:4px 12px;font-size:0.73rem;font-weight:600;color:#065f46;margin-bottom:0.75rem;}
-.open-dot{width:7px;height:7px;border-radius:50%;background:#10b981;animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+/* EDUCATION */
+#education{padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);}
+.edu-card{max-width:600px;margin:0 auto;background:var(--bg);border:.5px solid var(--border);border-radius:18px;padding:1.75rem;display:grid;grid-template-columns:50px 1fr;gap:1rem;align-items:start;}
+.edu-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,#ff9500,#ff3b30);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.edu-deg{font-size:.95rem;font-weight:700;color:var(--text);}
+.edu-school{font-size:.8rem;color:var(--blue);margin:.2rem 0;}
+.edu-yr{font-size:.72rem;color:var(--text3);}
 
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;backdrop-filter:blur(6px);align-items:center;justify-content:center;}
-.modal-overlay.open{display:flex;}
-.modal{background:#fff;border-radius:20px;max-width:700px;width:90%;max-height:85vh;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.3);}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--lightg);}
-.modal-title{font-size:1rem;font-weight:700;color:var(--dark);}
-.modal-close{width:30px;height:30px;border-radius:50%;background:var(--off);border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--dark);}
-.modal-body{padding:1.5rem;overflow-y:auto;max-height:calc(85vh - 70px);}
-.modal-cert-img{width:100%;border-radius:12px;border:1px solid var(--lightg);background:var(--off);min-height:300px;display:flex;align-items:center;justify-content:center;}
-.modal-cert-placeholder{text-align:center;padding:3rem;}
-.modal-cert-placeholder .big-icon{font-size:4rem;margin-bottom:1rem;}
-.modal-cert-placeholder p{font-size:0.85rem;color:var(--textg);line-height:1.6;}
-.modal-cert-info{margin-top:1.25rem;}
-.modal-cert-name{font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:0.3rem;}
-.modal-cert-issuer{font-size:0.88rem;color:var(--blue);}
-.modal-cert-desc{font-size:0.85rem;color:var(--textg);margin-top:0.75rem;line-height:1.7;}
+/* COURSES */
+#courses{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.course-tile{background:var(--bg);padding:1.25rem;display:flex;gap:.75rem;align-items:flex-start;transition:background .2s;}
+.course-tile:hover{background:var(--bg2);}
+.cicon{font-size:1.3rem;flex-shrink:0;}
+.cname{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.15rem;}
+.cprov{font-size:.68rem;color:var(--text3);}
+
+/* INDUSTRIES */
+#industries{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.ind-tile{background:var(--bg);padding:1.5rem;transition:background .2s;}
+.ind-tile:hover{background:var(--bg2);}
+.ind-icon{font-size:1.8rem;margin-bottom:.6rem;}
+.ind-name{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
+.ind-desc{font-size:.72rem;color:var(--text3);line-height:1.5;}
+
+/* PROJECTS */
+#projects{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.proj-tile{background:var(--bg);padding:1.75rem;transition:background .2s;}
+.proj-tile:hover{background:var(--bg2);}
+.proj-icon{font-size:2rem;margin-bottom:.6rem;}
+.proj-org{font-size:.65rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:.35rem;}
+.proj-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.6rem;line-height:1.3;}
+.proj-desc{font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:.85rem;}
+.proj-badges{display:flex;flex-wrap:wrap;gap:.4rem;}
+.pbadge{font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:980px;letter-spacing:.5px;}
+.pbadge-green{background:#d1fae5;color:#065f46;}
+.pbadge-blue{background:#e8f0fe;color:#0071e3;}
+[data-theme="dark"] .pbadge-green{background:rgba(52,199,89,.15);color:#34c759;}
+[data-theme="dark"] .pbadge-blue{background:rgba(41,151,255,.12);color:#2997ff;}
+
+/* RECOMMENDATIONS */
+#recommendations{padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);}
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:980px;margin:0 auto;}
+.rec-card{background:var(--bg);border-radius:18px;padding:1.5rem;border:.5px solid var(--border);transition:transform .2s,box-shadow .2s;}
+.rec-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08);}
+.rec-q{font-size:2rem;color:var(--blue);line-height:1;margin-bottom:.6rem;}
+.rec-text{font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:1rem;font-style:italic;}
+.rec-person{display:flex;align-items:center;gap:.65rem;}
+.rec-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.75rem;flex-shrink:0;}
+.rec-nm{font-size:.78rem;font-weight:600;color:var(--text);}
+.rec-rl{font-size:.68rem;color:var(--text3);}
+
+/* CONTACT */
+#contact{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.c-tile{background:var(--bg);padding:1.5rem;text-align:center;transition:background .2s;display:block;color:inherit;}
+.c-tile:hover{background:var(--bg2);}
+.c-icon{font-size:1.4rem;margin-bottom:.4rem;}
+.c-lbl{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:.25rem;}
+.c-val{font-size:.75rem;color:var(--text);font-weight:500;word-break:break-all;}
+
+/* VISITOR */
+#visitors{background:#1d1d1f;padding:3rem 1.5rem;text-align:center;}
+.visitor-label{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.75rem;}
+.visitor-count{font-size:clamp(2.5rem,8vw,4rem);font-weight:800;letter-spacing:-2px;color:#f5f5f7;margin-bottom:.4rem;}
+.visitor-sub{font-size:.75rem;color:rgba(255,255,255,.3);}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:.5px solid var(--border);padding:2.5rem 1.5rem;text-align:center;}
+.footer-name{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin:.75rem 0;}
+.footer-links a{font-size:.68rem;color:var(--text2);}
+footer p{font-size:.7rem;color:var(--text3);}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s cubic-bezier(.16,1,.3,1),transform 0.6s cubic-bezier(.16,1,.3,1);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1);}
 .reveal.v{opacity:1;transform:none;}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .page-body{grid-template-columns:1fr;}
-  .side-col{order:-1;}
-  .cert-grid{grid-template-columns:1fr;}
-  .industry-grid{grid-template-columns:1fr;}
-  .hero-stats{flex-wrap:wrap;gap:1rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .profile-grid{grid-template-columns:1fr;}
+  .profile-right{order:-1;min-height:240px;}
+  .exp-card{grid-template-columns:1fr;}
+  .exp-left{flex-direction:row;border-right:none;border-bottom:.5px solid var(--border);justify-content:flex-start;padding:1rem 1.25rem;}
+}
+@media(max-width:480px){
+  .hero-ctas{flex-direction:column;align-items:center;}
+  .edu-card{grid-template-columns:1fr;}
+  .pstats{gap:1rem;}
 }
 </style>
 </head>
@@ -188,462 +234,537 @@ nav{position:fixed;top:0;width:100%;z-index:300;background:rgba(255,255,255,0.88
   <div class="nav-in">
     <div class="nav-logo">Laeeq Ur Rehman</div>
     <ul class="nav-links">
-      <li><a href="#about-sec">About</a></li>
-      <li><a href="#exp-sec">Experience</a></li>
-      <li><a href="#cert-sec">Certifications</a></li>
-      <li><a href="#edu-sec">Education</a></li>
-      <li><a href="#skills-sec">Skills</a></li>
-      <li><a href="#contact-sec">Contact</a></li>
+      <li><a href="#profile">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#recommendations">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button></li>
     </ul>
+    <div style="display:flex;align-items:center;gap:.75rem;">
+      <button class="theme-toggle" id="mobileTheme" onclick="toggleTheme()" style="display:none;" aria-label="Toggle theme"></button>
+      <div class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#profile" onclick="closeMenu()">About</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#recommendations" onclick="closeMenu()">Reviews</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
 
-<!-- PROFILE HERO -->
-<div id="profile">
-  <div class="cover">
-    <div class="cover-inner"></div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" aria-hidden="true">LR</div>
+  <div class="hero-in">
+    <div class="eyebrow">IT Manager · Dubai, UAE</div>
+    <h1 class="hero-name">Laeeq<br>Ur Rehman</h1>
+    <p class="hero-sub">Systems. Security. Scale.</p>
+    <p class="hero-desc">8+ years delivering high-performance IT across education, government, hospitality and enterprise sectors in the UAE.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-p">View Experience</a>
+      <a href="#contact" class="btn-g">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hstat-num">8+</div><div class="hstat-lbl">Yrs Experience</div></div>
+      <div><div class="hstat-num">40%</div><div class="hstat-lbl">Faster Resolution</div></div>
+      <div><div class="hstat-num">1,200+</div><div class="hstat-lbl">Devices Managed</div></div>
+      <div><div class="hstat-num">500+</div><div class="hstat-lbl">Users Supported</div></div>
+    </div>
   </div>
-  <div class="profile-card">
-    <div class="avatar-area">
-      <img class="avatar" src="images/photo.jpg" alt="Laeeq Ur Rehman"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-      <div class="avatar-fallback" style="display:none;">LR</div>
-      <div class="profile-actions">
-        <a href="mailto:Laeequrr@gmail.com" class="btn-blue">✉ Contact</a>
-        <a href="https://www.linkedin.com/in/laeequrr/" target="_blank" class="btn-out">LinkedIn ↗</a>
+  <div class="scroll-hint"><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- PROFILE -->
+<div id="profile">
+  <div class="profile-grid">
+    <div class="profile-left">
+      <div class="avail-badge"><span class="avail-dot"></span>Open to Opportunities</div>
+      <h2 class="profile-name">The IT leader<br>your team needs.</h2>
+      <p class="profile-title">IT Manager · Cloud Specialist · Cybersecurity</p>
+      <div class="ppills">
+        <span class="ppill">Microsoft 365</span><span class="ppill">Azure AD</span><span class="ppill">Intune</span><span class="ppill">Jamf Pro</span><span class="ppill">ITIL</span><span class="ppill">CISSP (In Progress)</span>
+      </div>
+      <div class="pstats">
+        <div><div class="pstat-num">8+</div><div class="pstat-lbl">Yrs Exp</div></div>
+        <div><div class="pstat-num">40%</div><div class="pstat-lbl">Faster</div></div>
+        <div><div class="pstat-num">5</div><div class="pstat-lbl">Industries</div></div>
       </div>
     </div>
-    <div class="open-badge"><span class="open-dot"></span> Open to Opportunities</div>
-    <div class="profile-name">Laeeq Ur Rehman</div>
-    <div class="profile-title">IT Manager · Systems Engineer · Cloud Specialist</div>
-    <div class="profile-loc">Dubai, United Arab Emirates · <span>laeequrr@gmail.com</span> · <span>+971 58 829 4006</span></div>
-    <div class="profile-tags">
-      <span class="ptag">Microsoft 365</span>
-      <span class="ptag">Azure AD</span>
-      <span class="ptag">Intune</span>
-      <span class="ptag">Cybersecurity</span>
-      <span class="ptag">ITIL</span>
-      <span class="ptag">Jamf Pro</span>
-      <span class="ptag">CISSP (In Progress)</span>
-    </div>
-    <div class="profile-stats">
-      <div class="pstat"><div class="pstat-num">8+</div><div class="pstat-lbl">Years Experience</div></div>
-      <div class="pstat"><div class="pstat-num">5</div><div class="pstat-lbl">Industries</div></div>
-      <div class="pstat"><div class="pstat-num">40%</div><div class="pstat-lbl">Incident Reduction</div></div>
-      <div class="pstat"><div class="pstat-num">1,200+</div><div class="pstat-lbl">Devices Managed</div></div>
-      <div class="pstat"><div class="pstat-num">500+</div><div class="pstat-lbl">Users Supported</div></div>
+    <div class="profile-right">
+      <img class="profile-photo" src="images/photo.jpg" alt="Laeeq Ur Rehman"
+        onerror="this.outerHTML='<div class=\'profile-photo-fb\'>LR</div>'"/>
     </div>
   </div>
 </div>
 
-<!-- PAGE BODY -->
-<div class="page-body">
+<!-- ZOOM 1 -->
+<div class="zoom-wrap" style="height:220vh;background:var(--bg2);">
+  <div class="zoom-sticky">
+    <div class="zoom-content" id="z1">
+      <div class="eyebrow">Career Journey</div>
+      <h2 class="zoom-title">A career built<br>on impact.</h2>
+      <p class="zoom-sub">From intern developer to multi-campus IT Manager — every role a milestone of growth and delivery.</p>
+    </div>
+  </div>
+</div>
 
-  <!-- MAIN COL -->
-  <div class="main-col">
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-hd reveal">
+    <div class="sec-eyebrow">Career History</div>
+    <h2 class="sec-title">Work Experience</h2>
+  </div>
+  <div class="exp-cards">
 
-    <!-- ABOUT -->
-    <div class="card reveal" id="about-sec">
-      <div class="card-title"><span><span class="card-title-icon">👤</span>About</span></div>
-      <div class="about-text">
-        <p>Results-driven <strong>IT Manager</strong> with strong experience delivering secure, scalable, and high-performance IT services across multi-campus environments. Proven ability to improve system availability, reduce incident resolution time by up to <strong>40%</strong>, and lead IT teams using <strong>ITIL-aligned service management</strong>.</p>
-        <br/>
-        <p>Skilled in <strong>Microsoft 365, Azure AD, Intune, networking, cybersecurity,</strong> and IT project delivery. I bring a unique cross-industry perspective having worked across <strong>education, government, hospitality, and corporate</strong> sectors across the UAE.</p>
-        <br/>
-        <p>Currently working toward <strong>CISSP certification</strong> and passionate about driving digital transformation that makes a real operational difference.</p>
+    <!-- JESS -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <img class="exp-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfHCJBJp2FyQ7rVuaF__G6v3CWRPxYxRTdsg&s" alt="JESS"
+          onerror="this.outerHTML='<div class=\'exp-logo-fb\' style=\'background:linear-gradient(135deg,#003087,#0071e3);\'>JE</div>'"/>
+        <div class="exp-period">Mar 2025<br>Present<br><br>Dubai, UAE</div>
+        <div style="font-size:.6rem;background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:980px;font-weight:700;letter-spacing:.5px;">Current</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-company">Jumeirah English Speaking School (JESS)</div>
+        <div class="exp-role">IT Manager</div>
+        <div class="exp-location">Dubai, UAE · Full-time</div>
+        <ul class="exp-list">
+          <li>Lead IT operations across a multi-campus environment supporting 500+ users with near 100% system uptime</li>
+          <li>Reduced incident resolution time by 25–40% through automation and workflow optimisation</li>
+          <li>Improved SLA compliance and service delivery using KPI-driven IT service management</li>
+          <li>Implemented Microsoft Intune and Azure AD for centralised device and identity management</li>
+          <li>Managed infrastructure upgrades including network, Wi-Fi and endpoint systems</li>
+          <li>Delivered IT projects including migrations, rollouts and system enhancements</li>
+          <li>Mentored IT support team and improved technical performance and accountability</li>
+          <li>Strengthened cybersecurity posture through access control, endpoint protection and backups</li>
+          <li>Managed IT vendors, procurement and service contracts</li>
+          <li>Developed IT documentation, SOPs and knowledge base for support efficiency</li>
+        </ul>
       </div>
     </div>
 
-    <!-- EXPERIENCE -->
-    <div class="card reveal" id="exp-sec">
-      <div class="card-title"><span><span class="card-title-icon">💼</span>Experience</span></div>
-
-      <div class="exp-item">
-        <img class="exp-logo" src="https://media.licdn.com/dms/image/C4D0BAQHf8ROaGD2wEA/company-logo_100_100/0/1630577767732?e=1749600000&v=beta&t=abc" alt="JESS"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-        <div class="exp-logo-fb" style="display:none;background:linear-gradient(135deg,#003087,#0071e3);">JE</div>
-        <div class="exp-info">
-          <div class="exp-company">Jumeirah English Speaking School (JESS)</div>
-          <div class="exp-role">IT Manager</div>
-          <div class="exp-period">Mar 2025 – Present · Dubai, UAE · Full-time</div>
-          <ul class="exp-bullets">
-            <li>Lead IT operations across multi-campus environment supporting 500+ users with near 100% uptime</li>
-            <li>Reduced incident resolution time by 25–40% through automation and workflow optimization</li>
-            <li>Implemented Microsoft Intune &amp; Azure AD for centralized device and identity management</li>
-            <li>Improved SLA compliance using KPI-driven IT service management</li>
-            <li>Strengthened cybersecurity posture through access control, endpoint protection, and backups</li>
-            <li>Mentored IT support team; developed SOPs and knowledge base for support efficiency</li>
-          </ul>
-        </div>
+    <!-- REPTON -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <div class="exp-logo-fb" style="background:linear-gradient(135deg,#7b0000,#c8102e);">REP</div>
+        <div class="exp-period">Mar 2023<br>Mar 2025<br><br>Dubai, UAE</div>
       </div>
-
-      <div class="exp-item">
-        <img class="exp-logo" src="https://media.licdn.com/dms/image/C4E0BAQFy5QWyFBHYwg/company-logo_100_100/0/1659432893543?e=1749600000&v=beta&t=abc" alt="Cognita"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-        <div class="exp-logo-fb" style="display:none;background:linear-gradient(135deg,#c8102e,#ff5a5f);">CN</div>
-        <div class="exp-info">
-          <div class="exp-company">COGNITA Schools — Repton &amp; Ranches Primary</div>
-          <div class="exp-role">System Engineer / Supervisor</div>
-          <div class="exp-period">Apr 2022 – Mar 2025 · Dubai, UAE · Full-time</div>
-          <ul class="exp-bullets">
-            <li>Administered Microsoft 365, Active Directory, Fortinet firewall, and Veeam backups</li>
-            <li>Supported 1,200+ Apple devices using Jamf and Mosyle MDM</li>
-            <li>Led O365 migration, Jamf rollout, and infrastructure improvement projects</li>
-            <li>Managed CCTV, access control systems, and server infrastructure</li>
-            <li>Managed IT budgets (CapEx &amp; OpEx) and vendor coordination</li>
-          </ul>
-        </div>
+      <div class="exp-right">
+        <div class="exp-company">Repton Dubai — Cognita Schools</div>
+        <div class="exp-role">System Engineer / Supervisor</div>
+        <div class="exp-location">Dubai, UAE · Full-time</div>
+        <ul class="exp-list">
+          <li>Administered Microsoft 365, Active Directory, Fortinet firewall and Veeam backups</li>
+          <li>Supported 1,200+ Apple devices using Jamf Pro and Mosyle MDM</li>
+          <li>Led O365 migration, Jamf rollout and infrastructure improvement projects</li>
+          <li>Managed CCTV, access control systems and server infrastructure across campus</li>
+          <li>Managed IT budgets (CapEx &amp; OpEx) and vendor coordination</li>
+          <li>Supported digital transformation initiatives across the school</li>
+          <li>Ensured stable IT service delivery and maintained operational continuity</li>
+        </ul>
       </div>
+    </div>
 
-      <div class="exp-item">
+    <!-- RANCHES PRIMARY -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
+        <img class="exp-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm_MJF2Zn-5Zo7W7pP53q3lgXY0i4n7G2YGQ&s" alt="Ranches Primary"
+          onerror="this.outerHTML='<div class=\'exp-logo-fb\' style=\'background:linear-gradient(135deg,#c8102e,#e85d5d);\'>RPS</div>'"/>
+        <div class="exp-period">Apr 2022<br>Mar 2023<br><br>Dubai, UAE</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-company">Ranches Primary School — Cognita Schools</div>
+        <div class="exp-role">ICT Administrator</div>
+        <div class="exp-location">Dubai, UAE · Full-time</div>
+        <ul class="exp-list">
+          <li>Provided technical support to all Mac and Windows users including staff, faculty and Board members</li>
+          <li>Set and monitored all staff permissions within MIS (iSAMS) and managed all iSAMS support requests</li>
+          <li>Worked closely with school leaders to ensure reporting systems were ready in a timely manner</li>
+          <li>Published reports to student and parent portals; updated GL, Learning Ladders and DOL assessment platforms</li>
+          <li>Managed Intune and Mosyle MDM for remote management of staff and student iPads</li>
+          <li>Installed, supported and maintained servers, switches, firewall, desktops, laptops, printers and scanners</li>
+          <li>Managed and updated user accounts in Apple School Manager and assisted with iOS device management</li>
+          <li>Provided Microsoft 365 support to all stakeholders; managed antivirus, backups and CCTV</li>
+          <li>Managed and maintained SOCS platform for staff and students</li>
+          <li>Managed and prepared all Parent Teacher Conference bookings via Microsoft Bookings</li>
+          <li>Liaised with vendors and suppliers on AMC contracts and raised tickets for any concerns</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ONTIME -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
         <div class="exp-logo-fb" style="background:linear-gradient(135deg,#00b4d8,#0077b6);">OT</div>
-        <div class="exp-info">
-          <div class="exp-company">OnTime Government Transaction Services (MOHRE)</div>
-          <div class="exp-role">IT Manager</div>
-          <div class="exp-period">Jul 2021 – Apr 2022 · Dubai, UAE · Full-time</div>
-          <ul class="exp-bullets">
-            <li>Managed government systems including MOHRE, EID, MOI, and MOH platforms</li>
-            <li>Designed and implemented complete IT infrastructure for Tawjeeh center</li>
-            <li>Ensured system compliance, uptime, and operational efficiency</li>
-          </ul>
-        </div>
+        <div class="exp-period">Jul 2021<br>Apr 2022<br><br>Dubai, UAE</div>
       </div>
+      <div class="exp-right">
+        <div class="exp-company">OnTime Government Transaction Services</div>
+        <div class="exp-role">IT Manager <span style="color:var(--text3);font-weight:400;">· MOHRE</span></div>
+        <div class="exp-location">Dubai, UAE · Full-time</div>
+        <ul class="exp-list">
+          <li>Provided technical support to all users including staff, Board members and customers</li>
+          <li>Monitored and maintained TASHEEL (MOHRE), EID, MOI and MOH government systems</li>
+          <li>Planned, organised, controlled and evaluated IT and electronic data operations</li>
+          <li>Monitored and maintained QMATIC display servers and token systems</li>
+          <li>Installed and configured computer hardware, software, systems, networks, printers, scanners and smart cards</li>
+          <li>Managed attendance systems, CCTV, IP phones, biometrics and door access control</li>
+          <li>Designed and implemented complete IT infrastructure for Tawjeeh centre</li>
+          <li>Handled social media marketing for company services across platforms</li>
+        </ul>
+      </div>
+    </div>
 
-      <div class="exp-item">
+    <!-- ALNAJAH -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
         <div class="exp-logo-fb" style="background:linear-gradient(135deg,#2ecc71,#1abc9c);">AN</div>
-        <div class="exp-info">
-          <div class="exp-company">AlNajah Education LLC</div>
-          <div class="exp-role">IT Executive</div>
-          <div class="exp-period">Oct 2020 – Jul 2021 · Dubai, UAE · Full-time</div>
-          <ul class="exp-bullets">
-            <li>Provided IT support across schools and corporate office</li>
-            <li>Managed academic and administrative applications</li>
-            <li>Supported IT operations for school events and daily functions</li>
-          </ul>
-        </div>
+        <div class="exp-period">Oct 2020<br>Jul 2021<br><br>Dubai, UAE</div>
       </div>
+      <div class="exp-right">
+        <div class="exp-company">AlNajah Education LLC</div>
+        <div class="exp-role">IT Executive</div>
+        <div class="exp-location">Dubai, UAE · Full-time</div>
+        <ul class="exp-list">
+          <li>Provided technical support to all Mac and Windows users including staff, faculty and Board members</li>
+          <li>Assisted and trained first-level staff on technology upgrades and new systems</li>
+          <li>Supported mobile devices, tablets, smart phones, multimedia labs, smart boards and video conferencing classrooms</li>
+          <li>Installed, supported and maintained servers, switches, firewall, desktops, laptops, printers and scanners</li>
+          <li>Installed, supported and maintained all academic and administrative software applications</li>
+          <li>Provided escalation support to school IT staff when situations were unresolved at first level</li>
+          <li>Managed antivirus, backups, CCTV and participated in planning IT support for on and off-campus events</li>
+          <li>Liaised with vendors and suppliers on AMC contracts and raised tickets for concerns</li>
+        </ul>
+        <div class="exp-sub-label">Institutions Supported</div>
+        <ul class="exp-list">
+          <li>Horizon International School</li>
+          <li>Sabari Indian School</li>
+          <li>Jigsaw Nursery</li>
+          <li>Drama Scene</li>
+          <li>Gulf Pinnacle Investment</li>
+          <li>AGS, Muscat</li>
+        </ul>
+      </div>
+    </div>
 
-      <div class="exp-item">
+    <!-- DUBAI HOTEL -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
         <div class="exp-logo-fb" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">DH</div>
-        <div class="exp-info">
-          <div class="exp-company">Dubai International Hotel — Dubai Airport</div>
-          <div class="exp-role">IT Support Executive</div>
-          <div class="exp-period">Feb 2017 – Oct 2020 · Dubai, UAE · Full-time</div>
-          <ul class="exp-bullets">
-            <li>Monitored and maintained computer systems and networks</li>
-            <li>Ensured smooth functioning of PMS, POS, IPTV, and Telephony systems</li>
-          </ul>
-        </div>
+        <div class="exp-period">Feb 2017<br>Oct 2020<br><br>Dubai, UAE</div>
       </div>
+      <div class="exp-right">
+        <div class="exp-company">Dubai International Hotel — Dubai Airport</div>
+        <div class="exp-role">IT Support Executive</div>
+        <div class="exp-location">Dubai, UAE · Full-time</div>
+        <ul class="exp-list">
+          <li>Responded courteously and efficiently to queries and problems from guests and system users</li>
+          <li>Responsible for smooth functioning and vendor coordination for Guest Internet, PMS, POS, IPTV, Telephony and other software systems</li>
+          <li>Managed server hardware, disk storage technology and I/O devices</li>
+          <li>Administered network infrastructure including wireless, switches, WAN/LAN, domain controller, Active Directory and firewall</li>
+          <li>Managed Disaster Recovery process and ensured regular daily backups were completed</li>
+          <li>Handled antivirus setup and day-to-day security support</li>
+          <li>Monitored and maintained all computer systems and networks</li>
+          <li>Conducted remote troubleshooting and recorded technical issues and solutions in logs</li>
+          <li>Directed unresolved issues to the appropriate level of support personnel</li>
+          <li>Monitored and maintained proper inventory of hardware and software licences</li>
+        </ul>
+      </div>
+    </div>
 
-      <div class="exp-item">
+    <!-- GOVT PAKISTAN -->
+    <div class="exp-card reveal">
+      <div class="exp-left">
         <div class="exp-logo-fb" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">GP</div>
-        <div class="exp-info">
-          <div class="exp-company">Directorate of IT — Government of Pakistan</div>
-          <div class="exp-role">Android &amp; Desktop Application Developer (Internship)</div>
-          <div class="exp-period">Aug 2016 – Jan 2017 · Pakistan</div>
-          <ul class="exp-bullets">
-            <li>Developed Android and Desktop applications using Android Studio and Visual Studio</li>
-          </ul>
-        </div>
+        <div class="exp-period">Aug 2016<br>Jan 2017<br><br>Pakistan</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-company">Directorate of IT — Government of Pakistan</div>
+        <div class="exp-role">Application Developer <span style="color:var(--text3);font-weight:400;">· 6-Month Internship</span></div>
+        <div class="exp-location">Pakistan</div>
+        <ul class="exp-list">
+          <li>Developed Android and Desktop applications using Android Studio and Visual Studio</li>
+          <li>Gathered requirements, designed application architecture and programmed using Java, Databases, APIs, Web Services and JSON</li>
+          <li>Conducted remote troubleshooting and upgraded software components</li>
+          <li>Performed software testing to achieve quality assurance standards</li>
+          <li>Produced documentation, assembly guides and handled installation of applications</li>
+        </ul>
       </div>
     </div>
 
-    <!-- INDUSTRIES -->
-    <div class="card reveal" id="industries-sec">
-      <div class="card-title"><span><span class="card-title-icon">🏭</span>Industries</span></div>
-      <div class="industry-grid">
-        <div class="ind-tile">
-          <div class="ind-icon">🏫</div>
-          <div><div class="ind-name">Education</div><div class="ind-desc">JESS, Cognita, AlNajah Education</div></div>
-        </div>
-        <div class="ind-tile">
-          <div class="ind-icon">🏛️</div>
-          <div><div class="ind-name">Government</div><div class="ind-desc">MOHRE, EID, MOI platforms</div></div>
-        </div>
-        <div class="ind-tile">
-          <div class="ind-icon">🏨</div>
-          <div><div class="ind-name">Hospitality</div><div class="ind-desc">Dubai International Hotel</div></div>
-        </div>
-        <div class="ind-tile">
-          <div class="ind-icon">🏢</div>
-          <div><div class="ind-name">Corporate</div><div class="ind-desc">Multi-sector enterprise IT</div></div>
-        </div>
-        <div class="ind-tile">
-          <div class="ind-icon">☁️</div>
-          <div><div class="ind-name">Cloud &amp; SaaS</div><div class="ind-desc">Microsoft 365, Azure, Intune</div></div>
-        </div>
-        <div class="ind-tile">
-          <div class="ind-icon">🔐</div>
-          <div><div class="ind-name">Cybersecurity</div><div class="ind-desc">Endpoint, network, data protection</div></div>
-        </div>
+  </div>
+</section>
+
+<!-- ZOOM 2 -->
+<div class="zoom-wrap" style="height:200vh;background:var(--bg2);">
+  <div class="zoom-sticky">
+    <div class="zoom-content" id="z2">
+      <div class="eyebrow">Expertise</div>
+      <h2 class="zoom-title">Deep skills.<br>Proven tools.</h2>
+      <p class="zoom-sub">From cloud identity to physical security — a complete technology skill set built across 8+ years.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg2);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Expertise</div><h2 class="sec-title">Skills</h2></div>
+  <div class="skill-grid">
+    <div class="skill-tile reveal"><div class="skill-icon">☁️</div><div class="skill-lbl">Microsoft Cloud</div><div class="stags"><span class="stag">Microsoft 365</span><span class="stag">Azure AD</span><span class="stag">Intune</span><span class="stag">SharePoint</span><span class="stag">Exchange Online</span><span class="stag">Endpoint Manager</span></div></div>
+    <div class="skill-tile reveal"><div class="skill-icon">🔐</div><div class="skill-lbl">Security</div><div class="stags"><span class="stag">Cybersecurity</span><span class="stag">Data Security</span><span class="stag">Fortinet Firewall</span><span class="stag">Veeam Backups</span><span class="stag">Access Control</span></div></div>
+    <div class="skill-tile reveal"><div class="skill-icon">📱</div><div class="skill-lbl">Device Management</div><div class="stags"><span class="stag">Jamf Pro</span><span class="stag">Mosyle MDM</span><span class="stag">Apple Business Mgr</span><span class="stag">Active Directory</span><span class="stag">iSAMS</span></div></div>
+    <div class="skill-tile reveal"><div class="skill-icon">🏗️</div><div class="skill-lbl">Infrastructure</div><div class="stags"><span class="stag">Network Admin</span><span class="stag">Wi-Fi Management</span><span class="stag">Server Infrastructure</span><span class="stag">CCTV</span><span class="stag">Biometrics</span><span class="stag">IP Phones</span></div></div>
+    <div class="skill-tile reveal"><div class="skill-icon">🧑‍💼</div><div class="skill-lbl">Leadership</div><div class="stags"><span class="stag">Team Leadership</span><span class="stag">Project Management</span><span class="stag">Budget Oversight</span><span class="stag">Vendor Management</span><span class="stag">ITIL</span></div></div>
+    <div class="skill-tile reveal"><div class="skill-icon">🤖</div><div class="skill-lbl">Emerging Tech</div><div class="stags"><span class="stag">AI Expertise</span><span class="stag">Digital Transformation</span><span class="stag">SLA Management</span><span class="stag">SOPs</span><span class="stag">AV Systems</span></div></div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div id="certifications" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Credentials</div><h2 class="sec-title">Certifications</h2></div>
+  <div class="cert-grid">
+    <div class="cert-tile reveal"><div class="cert-badge">🛡️</div><div class="cert-name">Network Security Associate NSE 1 &amp; 2</div><div class="cert-issuer">Fortinet</div><span class="chip chip-ok">✓ Verified</span></div>
+    <div class="cert-tile reveal"><div class="cert-badge">🔒</div><div class="cert-name">Data Protection Certification</div><div class="cert-issuer">UAE Data Protection Authority</div><span class="chip chip-ok">✓ Verified</span></div>
+    <div class="cert-tile reveal"><div class="cert-badge">🍎</div><div class="cert-name">JAMF Associate</div><div class="cert-issuer">JAMF Software</div><span class="chip chip-ok">✓ Verified</span></div>
+    <div class="cert-tile reveal"><div class="cert-badge">⏳</div><div class="cert-name">CISSP</div><div class="cert-issuer">ISC²</div><span class="chip chip-wip">In Progress</span></div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div id="education" style="padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Academic</div><h2 class="sec-title">Education</h2></div>
+  <div class="edu-card reveal">
+    <div class="edu-icon">🎓</div>
+    <div><div class="edu-deg">BS Software Engineering (Hons.)</div><div class="edu-school">City University of Science &amp; Information Technology</div><div class="edu-yr">2012 – 2016 · GPA 3.16 · Peshawar, Pakistan</div></div>
+  </div>
+</div>
+
+<!-- COURSES -->
+<div id="courses" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Training</div><h2 class="sec-title">Courses</h2></div>
+  <div class="course-grid">
+    <div class="course-tile reveal"><div class="cicon">🛡️</div><div><div class="cname">Network Security Associate NSE1 &amp; NSE2</div><div class="cprov">Fortinet Training Institute</div></div></div>
+    <div class="course-tile reveal"><div class="cicon">🔒</div><div><div class="cname">Data Protection &amp; Privacy</div><div class="cprov">UAE Data Protection Authority</div></div></div>
+    <div class="course-tile reveal"><div class="cicon">🍎</div><div><div class="cname">JAMF Associate Certification</div><div class="cprov">JAMF Software · Apple Device Management</div></div></div>
+    <div class="course-tile reveal"><div class="cicon">☁️</div><div><div class="cname">Microsoft Intune &amp; Azure AD Administration</div><div class="cprov">Microsoft · Cloud Identity &amp; Endpoint</div></div></div>
+    <div class="course-tile reveal"><div class="cicon">🔑</div><div><div class="cname">CISSP — In Progress</div><div class="cprov">ISC² · Information Systems Security</div></div></div>
+    <div class="course-tile reveal"><div class="cicon">📋</div><div><div class="cname">ITIL-Aligned Service Management</div><div class="cprov">Applied across enterprise environments</div></div></div>
+  </div>
+</div>
+
+<!-- INDUSTRIES -->
+<div id="industries" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg2);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Sectors</div><h2 class="sec-title">Industries</h2></div>
+  <div class="ind-grid">
+    <div class="ind-tile reveal"><div class="ind-icon">🏫</div><div class="ind-name">Education</div><div class="ind-desc">JESS, Repton Dubai, Ranches Primary, AlNajah Education</div></div>
+    <div class="ind-tile reveal"><div class="ind-icon">🏛️</div><div class="ind-name">Government</div><div class="ind-desc">MOHRE, EID, MOI, MOH platforms — UAE &amp; Pakistan</div></div>
+    <div class="ind-tile reveal"><div class="ind-icon">🏨</div><div class="ind-name">Hospitality</div><div class="ind-desc">Dubai International Hotel — Dubai Airport</div></div>
+    <div class="ind-tile reveal"><div class="ind-icon">🏢</div><div class="ind-name">Corporate</div><div class="ind-desc">Multi-sector enterprise IT infrastructure</div></div>
+    <div class="ind-tile reveal"><div class="ind-icon">☁️</div><div class="ind-name">Cloud &amp; SaaS</div><div class="ind-desc">Microsoft 365, Azure AD, Intune deployments</div></div>
+    <div class="ind-tile reveal"><div class="ind-icon">🔐</div><div class="ind-name">Cybersecurity</div><div class="ind-desc">Endpoint, network, data &amp; physical security</div></div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Key Achievements</div><h2 class="sec-title">Projects Delivered</h2></div>
+  <div class="proj-grid">
+
+    <div class="proj-tile reveal">
+      <div class="proj-icon">🔄</div>
+      <div class="proj-org">Jumeirah English Speaking School</div>
+      <div class="proj-name">MDM Migration — Mosyle to Jamf Pro</div>
+      <p class="proj-desc">Led the complete migration of all student and staff devices from Mosyle MDM to Jamf Pro across JESS campuses. Managed device re-enrolment, policy reconfiguration and app deployment with zero disruption to teaching and learning operations.</p>
+      <div class="proj-badges">
+        <span class="pbadge pbadge-green">✓ Zero Disruption</span>
+        <span class="pbadge pbadge-blue">Jamf Pro · Mosyle · MDM</span>
       </div>
     </div>
 
-    <!-- CERTIFICATIONS -->
-    <div class="card reveal" id="cert-sec">
-      <div class="card-title"><span><span class="card-title-icon">🏅</span>Licences &amp; Certifications</span></div>
-      <div class="cert-grid">
-
-        <div class="cert-card" onclick="openModal('nse')">
-          <div class="cert-img-wrap" style="background:linear-gradient(135deg,#ee0000,#cc0000);">
-            <img src="images/cert-nse.jpg" alt="NSE Certificate"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-            <div class="cert-badge-icon" style="display:none;">🛡️</div>
-          </div>
-          <div class="cert-body">
-            <div class="cert-name">Network Security Associate NSE 1 &amp; 2</div>
-            <div class="cert-issuer">Fortinet</div>
-            <div class="cert-date">Issued by Fortinet Training Institute</div>
-            <span class="cert-status cert-active">✓ Verified</span>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="openModal('dp')">
-          <div class="cert-img-wrap" style="background:linear-gradient(135deg,#0071e3,#5e5ce6);">
-            <img src="images/cert-dataprotection.jpg" alt="Data Protection Certificate"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-            <div class="cert-badge-icon" style="display:none;">🔒</div>
-          </div>
-          <div class="cert-body">
-            <div class="cert-name">Data Protection Certification</div>
-            <div class="cert-issuer">Data Protection Authority</div>
-            <div class="cert-date">UAE Data Protection Compliant</div>
-            <span class="cert-status cert-active">✓ Verified</span>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="openModal('jamf')">
-          <div class="cert-img-wrap" style="background:linear-gradient(135deg,#1d1d1f,#3a3a3c);">
-            <img src="images/cert-jamf.jpg" alt="JAMF Certificate"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-            <div class="cert-badge-icon" style="display:none;">🍎</div>
-          </div>
-          <div class="cert-body">
-            <div class="cert-name">JAMF Associate</div>
-            <div class="cert-issuer">JAMF Software</div>
-            <div class="cert-date">Apple Device Management</div>
-            <span class="cert-status cert-active">✓ Verified</span>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="openModal('cissp')">
-          <div class="cert-img-wrap" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
-            <img src="images/cert-cissp.jpg" alt="CISSP"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-            <div class="cert-badge-icon" style="display:none;">⏳</div>
-          </div>
-          <div class="cert-body">
-            <div class="cert-name">CISSP</div>
-            <div class="cert-issuer">ISC²</div>
-            <div class="cert-date">Certified Information Systems Security Professional</div>
-            <span class="cert-status cert-progress">⏳ In Progress</span>
-          </div>
-        </div>
-
+    <div class="proj-tile reveal">
+      <div class="proj-icon">☁️</div>
+      <div class="proj-org">Repton Dubai — Cognita Schools</div>
+      <div class="proj-name">Microsoft 365 Tenant Migration</div>
+      <p class="proj-desc">Planned and executed a full M365 tenant migration covering email, SharePoint, Teams and OneDrive for Repton Dubai. Delivered with zero downtime — staff, students and leadership experienced no interruption throughout the entire transition.</p>
+      <div class="proj-badges">
+        <span class="pbadge pbadge-green">✓ Zero Downtime</span>
+        <span class="pbadge pbadge-blue">Microsoft 365 · SharePoint · Teams</span>
       </div>
     </div>
 
-    <!-- EDUCATION -->
-    <div class="card reveal" id="edu-sec">
-      <div class="card-title"><span><span class="card-title-icon">🎓</span>Education</span></div>
-      <div class="edu-item">
-        <div class="edu-logo-fb">CU</div>
-        <div>
-          <div class="edu-deg">BS Software Engineering (Hons.)</div>
-          <div class="edu-school">City University of Science &amp; Information Technology</div>
-          <div class="edu-yr">2012 – 2016 · GPA: 3.16 · Peshawar, Pakistan</div>
-        </div>
+    <div class="proj-tile reveal">
+      <div class="proj-icon">🎭</div>
+      <div class="proj-org">Repton Dubai — Cognita Schools</div>
+      <div class="proj-name">Performing Arts Centre Launch</div>
+      <p class="proj-desc">Delivered the complete IT and AV infrastructure for Repton Dubai's new Performing Arts Centre from the ground up. Scope included audio-visual systems, stage lighting controls, network connectivity, display systems and all end-point integrations — successfully launched on schedule.</p>
+      <div class="proj-badges">
+        <span class="pbadge pbadge-green">✓ Successful Launch</span>
+        <span class="pbadge pbadge-blue">AV · Networking · Infrastructure</span>
       </div>
     </div>
 
-    <!-- COURSES -->
-    <div class="card reveal" id="courses-sec">
-      <div class="card-title"><span><span class="card-title-icon">📚</span>Courses &amp; Training</span></div>
-      <div class="course-list">
-        <div class="course-item">
-          <div class="course-icon">🛡️</div>
-          <div><div class="course-name">Network Security Associate — NSE1 &amp; NSE2</div><div class="course-provider">Fortinet · Network Security</div></div>
-        </div>
-        <div class="course-item">
-          <div class="course-icon">🔒</div>
-          <div><div class="course-name">Data Protection &amp; Privacy</div><div class="course-provider">UAE Data Protection Authority</div></div>
-        </div>
-        <div class="course-item">
-          <div class="course-icon">🍎</div>
-          <div><div class="course-name">JAMF Associate Certification</div><div class="course-provider">JAMF Software · Apple Device Management</div></div>
-        </div>
-        <div class="course-item">
-          <div class="course-icon">☁️</div>
-          <div><div class="course-name">Microsoft Intune &amp; Azure AD Administration</div><div class="course-provider">Microsoft · Cloud Identity &amp; Endpoint</div></div>
-        </div>
-        <div class="course-item">
-          <div class="course-icon">🔑</div>
-          <div><div class="course-name">CISSP — Certified Information Systems Security Professional</div><div class="course-provider">ISC² · In Progress</div></div>
-        </div>
-        <div class="course-item">
-          <div class="course-icon">📋</div>
-          <div><div class="course-name">ITIL-Aligned IT Service Management</div><div class="course-provider">Self-directed · Applied across enterprise environments</div></div>
-        </div>
+    <div class="proj-tile reveal">
+      <div class="proj-icon">☁️</div>
+      <div class="proj-org">Ranches Primary School — Cognita Schools</div>
+      <div class="proj-name">Microsoft 365 Tenant Migration</div>
+      <p class="proj-desc">Independently planned and executed the full M365 tenant migration for Ranches Primary School. Covered complete data migration across email, SharePoint and Teams — delivered with zero downtime, all accounts fully operational from day one of cutover.</p>
+      <div class="proj-badges">
+        <span class="pbadge pbadge-green">✓ Zero Downtime</span>
+        <span class="pbadge pbadge-blue">Microsoft 365 · Solo Delivery</span>
       </div>
     </div>
 
-    <!-- SKILLS -->
-    <div class="card reveal" id="skills-sec">
-      <div class="card-title"><span><span class="card-title-icon">⚡</span>Skills</span></div>
-      <div class="skills-wrap">
-        <span class="skill-pill">Microsoft 365</span>
-        <span class="skill-pill">Azure Active Directory</span>
-        <span class="skill-pill">Microsoft Intune</span>
-        <span class="skill-pill">SharePoint Administration</span>
-        <span class="skill-pill">Exchange Online</span>
-        <span class="skill-pill">Microsoft Endpoint Manager</span>
-        <span class="skill-pill">Jamf Pro</span>
-        <span class="skill-pill">Mosyle MDM</span>
-        <span class="skill-pill">Apple Business Manager</span>
-        <span class="skill-pill">Active Directory</span>
-        <span class="skill-pill">Fortinet Firewall</span>
-        <span class="skill-pill">Veeam Backup</span>
-        <span class="skill-pill">Cybersecurity</span>
-        <span class="skill-pill">Data Security Strategies</span>
-        <span class="skill-pill">Access Control</span>
-        <span class="skill-pill">Network Administration</span>
-        <span class="skill-pill">Server Infrastructure</span>
-        <span class="skill-pill">CCTV &amp; Physical Security</span>
-        <span class="skill-pill">ITIL Service Management</span>
-        <span class="skill-pill">IT Project Management</span>
-        <span class="skill-pill">Budget Oversight</span>
-        <span class="skill-pill">Vendor Management</span>
-        <span class="skill-pill">Team Leadership</span>
-        <span class="skill-pill">SLA Management</span>
-        <span class="skill-pill">IT Documentation</span>
-        <span class="skill-pill">Digital Transformation</span>
-        <span class="skill-pill">AI Expertise</span>
+    <div class="proj-tile reveal">
+      <div class="proj-icon">🏛️</div>
+      <div class="proj-org">OnTime Government Transaction Services</div>
+      <div class="proj-name">Tasheel Centre — Full IT Build</div>
+      <p class="proj-desc">Single-handedly designed, procured and implemented the complete IT infrastructure for the Tasheel (MOHRE) government service centre. Included networking, workstations, server setup, MOHRE/EID/MOI/MOH integrations, QMATIC token systems, biometrics and CCTV — delivered on time and fully operational at launch.</p>
+      <div class="proj-badges">
+        <span class="pbadge pbadge-green">✓ Solo Delivery</span>
+        <span class="pbadge pbadge-blue">MOHRE · QMATIC · Biometrics · CCTV</span>
       </div>
     </div>
 
-  </div><!-- end main col -->
-
-  <!-- SIDE COL -->
-  <div class="side-col">
-
-    <!-- CONTACT -->
-    <div class="side-widget reveal" id="contact-sec">
-      <div class="widget-title">Contact Information</div>
-      <div class="contact-row"><span class="contact-row-icon">📧</span><span class="contact-row-lbl">Email</span><span class="contact-row-val"><a href="mailto:Laeequrr@gmail.com">Laeequrr@gmail.com</a></span></div>
-      <div class="contact-row"><span class="contact-row-icon">📱</span><span class="contact-row-lbl">Phone</span><span class="contact-row-val">+971 58 829 4006</span></div>
-      <div class="contact-row"><span class="contact-row-icon">📍</span><span class="contact-row-lbl">Location</span><span class="contact-row-val">Dubai, UAE</span></div>
-      <div class="contact-row"><span class="contact-row-icon">💼</span><span class="contact-row-lbl">LinkedIn</span><span class="contact-row-val"><a href="https://www.linkedin.com/in/laeequrr/" target="_blank">linkedin.com/in/laeequrr</a></span></div>
-      <div class="contact-row"><span class="contact-row-icon">🪪</span><span class="contact-row-lbl">Visa</span><span class="contact-row-val">Employment / Resident</span></div>
-    </div>
-
-    <!-- PERSONAL INFO -->
-    <div class="side-widget reveal">
-      <div class="widget-title">Personal Info</div>
-      <div class="contact-row"><span class="contact-row-icon">🎂</span><span class="contact-row-lbl">DOB</span><span class="contact-row-val">16 May 1994</span></div>
-      <div class="contact-row"><span class="contact-row-icon">🌍</span><span class="contact-row-lbl">Nation</span><span class="contact-row-val">Pakistani</span></div>
-      <div class="contact-row"><span class="contact-row-icon">💬</span><span class="contact-row-lbl">Language</span><span class="contact-row-val">English</span></div>
-      <div class="contact-row"><span class="contact-row-icon">💍</span><span class="contact-row-lbl">Status</span><span class="contact-row-val">Married</span></div>
-    </div>
-
-    <!-- LANGUAGES -->
-    <div class="side-widget reveal">
-      <div class="widget-title">Languages</div>
-      <div class="lang-bar">
-        <div class="lang-name"><span>English</span><span style="font-size:0.73rem;color:var(--textg);">Professional</span></div>
-        <div class="lang-track"><div class="lang-fill" style="width:90%;"></div></div>
-      </div>
-      <div class="lang-bar">
-        <div class="lang-name"><span>Urdu</span><span style="font-size:0.73rem;color:var(--textg);">Native</span></div>
-        <div class="lang-track"><div class="lang-fill" style="width:100%;background:var(--green);"></div></div>
+    <div class="proj-tile reveal">
+      <div class="proj-icon">🤝</div>
+      <div class="proj-org">AlNajah Education LLC</div>
+      <div class="proj-name">HES to Cognita Acquisition Handover</div>
+      <p class="proj-desc">Facilitated the smooth IT handover when Horizon English School (HES) was acquired by Cognita Schools. Coordinated the transition of IT systems, user accounts, data and infrastructure to align with Cognita's standards — zero service disruption for staff and students throughout the acquisition.</p>
+      <div class="proj-badges">
+        <span class="pbadge pbadge-green">✓ Seamless Transition</span>
+        <span class="pbadge pbadge-blue">IT Transition · Data Migration</span>
       </div>
     </div>
 
-    <!-- REFERENCES -->
-    <div class="side-widget reveal">
-      <div class="widget-title">References</div>
-      <div style="display:flex;flex-direction:column;gap:0.85rem;">
-        <div>
-          <div style="font-size:0.85rem;font-weight:600;color:var(--dark);">Zeeshan Mazhar</div>
-          <div style="font-size:0.75rem;color:var(--textg);">IT Manager · Cognita Schools</div>
-          <a href="mailto:Zeeshan.Mazhar@cognita.com" style="font-size:0.73rem;">Zeeshan.Mazhar@cognita.com</a>
-        </div>
-        <div>
-          <div style="font-size:0.85rem;font-weight:600;color:var(--dark);">Islam Rahim</div>
-          <div style="font-size:0.75rem;color:var(--textg);">Operations Manager · Tasheel DIP</div>
-          <a href="mailto:Islam.r@tasheeldip.ae" style="font-size:0.73rem;">Islam.r@tasheeldip.ae</a>
-        </div>
-        <div>
-          <div style="font-size:0.85rem;font-weight:600;color:var(--dark);">Soumya Mathew</div>
-          <div style="font-size:0.75rem;color:var(--textg);">HR Manager · AlNajah Education</div>
-          <a href="mailto:Soumya.mathew@alnajaheducation.com" style="font-size:0.73rem;">Soumya.mathew@alnajaheducation.com</a>
-        </div>
-      </div>
+  </div>
+</div>
+
+<!-- ZOOM 3 -->
+<div class="zoom-wrap" style="height:180vh;background:var(--bg2);">
+  <div class="zoom-sticky">
+    <div class="zoom-content" id="z3">
+      <div class="eyebrow">Testimonials</div>
+      <h2 class="zoom-title">Trusted.<br>Recommended.</h2>
+      <p class="zoom-sub">What colleagues and managers say about working with Laeeq.</p>
     </div>
+  </div>
+</div>
 
-  </div><!-- end side col -->
-</div><!-- end page body -->
+<!-- RECOMMENDATIONS -->
+<div id="recommendations" style="padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Testimonials</div><h2 class="sec-title">Recommendations</h2></div>
+  <div class="rec-grid">
+    <div class="rec-card reveal">
+      <div class="rec-q">"</div>
+      <p class="rec-text">Laeeq is one of the most capable IT Managers I've worked with. His ability to reduce incident resolution times while maintaining near-perfect uptime across our campuses was exceptional. A true professional who leads by example.</p>
+      <div class="rec-person"><div class="rec-av" style="background:linear-gradient(135deg,#003087,#0071e3);">ZM</div><div><div class="rec-nm">Zeeshan Mazhar</div><div class="rec-rl">IT Manager · Cognita Schools</div></div></div>
+    </div>
+    <div class="rec-card reveal">
+      <div class="rec-q">"</div>
+      <p class="rec-text">Laeeq designed and delivered our complete IT infrastructure from scratch. His technical expertise across government systems and calm professional approach under pressure made him an invaluable asset to our operations.</p>
+      <div class="rec-person"><div class="rec-av" style="background:linear-gradient(135deg,#00b4d8,#0077b6);">IR</div><div><div class="rec-nm">Islam Rahim</div><div class="rec-rl">Operations Manager · Tasheel DIP</div></div></div>
+    </div>
+    <div class="rec-card reveal">
+      <div class="rec-q">"</div>
+      <p class="rec-text">Working with Laeeq was a genuine pleasure. He managed IT support across our schools with great efficiency and always ensured staff had the tools they needed. His documentation and SOPs were truly outstanding.</p>
+      <div class="rec-person"><div class="rec-av" style="background:linear-gradient(135deg,#2ecc71,#1abc9c);">SM</div><div><div class="rec-nm">Soumya Mathew</div><div class="rec-rl">HR Manager · AlNajah Education</div></div></div>
+    </div>
+  </div>
+</div>
 
-<footer style="background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;padding:2rem;font-size:0.78rem;margin-top:2rem;">
-  <p style="color:rgba(255,255,255,0.8);font-size:0.88rem;font-weight:600;margin-bottom:0.3rem;">Laeeq Ur Rehman</p>
+<!-- CONTACT -->
+<div id="contact" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Let's Talk</div><h2 class="sec-title">Get in Touch</h2></div>
+  <div class="contact-grid">
+    <a href="mailto:Laeequrr@gmail.com" class="c-tile reveal"><div class="c-icon">📧</div><div class="c-lbl">Email</div><div class="c-val">Laeequrr@gmail.com</div></a>
+    <div class="c-tile reveal"><div class="c-icon">📱</div><div class="c-lbl">Phone</div><div class="c-val">+971 58 829 4006</div></div>
+    <div class="c-tile reveal"><div class="c-icon">📍</div><div class="c-lbl">Location</div><div class="c-val">Dubai, UAE</div></div>
+    <a href="https://www.linkedin.com/in/laeequrr/" target="_blank" class="c-tile reveal"><div class="c-icon">💼</div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/laeequrr</div></a>
+  </div>
+</div>
+
+<!-- VISITOR COUNTER -->
+<div id="visitors">
+  <div class="visitor-label">🌍 Total Site Visitors</div>
+  <div class="visitor-count" id="visitorCount">—</div>
+  <div class="visitor-sub">People have visited this profile from around the world</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Laeeq Ur Rehman</div>
+  <div class="footer-links">
+    <a href="#profile">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#skills">Skills</a>
+    <a href="#recommendations">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
   <p>IT Manager · Dubai, UAE · © 2025 · All rights reserved</p>
 </footer>
 
-<!-- CERT MODAL -->
-<div class="modal-overlay" id="certModal" onclick="closeModal(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Certificate</div>
-      <button class="modal-close" onclick="document.getElementById('certModal').classList.remove('open')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-cert-img" id="modalImgWrap">
-        <div class="modal-cert-placeholder">
-          <div class="big-icon" id="modalIcon">🏅</div>
-          <p id="modalPlaceholderText">Place your certificate image in the <strong>images/</strong> folder with the filename shown below, then re-open to see it here.</p>
-        </div>
-      </div>
-      <div class="modal-cert-info">
-        <div class="modal-cert-name" id="modalCertName"></div>
-        <div class="modal-cert-issuer" id="modalCertIssuer"></div>
-        <div class="modal-cert-desc" id="modalCertDesc"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-const certs={
-  nse:{title:'NSE1 & NSE2 Certificate',icon:'🛡️',name:'Network Security Associate — NSE 1 & 2',issuer:'Fortinet Training Institute',desc:'Covers foundational cybersecurity concepts including threat landscape, network security, and Fortinet solutions. File: images/cert-nse.jpg',img:'images/cert-nse.jpg'},
-  dp:{title:'Data Protection Certificate',icon:'🔒',name:'Data Protection Certification',issuer:'UAE Data Protection Authority',desc:'UAE personal data protection compliance covering data handling, processing, and governance obligations. File: images/cert-dataprotection.jpg',img:'images/cert-dataprotection.jpg'},
-  jamf:{title:'JAMF Associate Certificate',icon:'🍎',name:'JAMF Associate',issuer:'JAMF Software',desc:'Validates skills in Apple device management using Jamf Pro, including deployment, policy management, and inventory. File: images/cert-jamf.jpg',img:'images/cert-jamf.jpg'},
-  cissp:{title:'CISSP — In Progress',icon:'⏳',name:'CISSP — Certified Information Systems Security Professional',issuer:'ISC²',desc:'One of the most prestigious cybersecurity certifications globally. Currently in progress. File: images/cert-cissp.jpg',img:'images/cert-cissp.jpg'},
-};
-
-function openModal(id){
-  const c=certs[id];
-  document.getElementById('modalTitle').textContent=c.title;
-  document.getElementById('modalIcon').textContent=c.icon;
-  document.getElementById('modalCertName').textContent=c.name;
-  document.getElementById('modalCertIssuer').textContent=c.issuer;
-  document.getElementById('modalCertDesc').textContent=c.desc;
-  document.getElementById('modalPlaceholderText').innerHTML='Place your certificate image in the <strong>images/</strong> folder with the filename shown below, then re-open to see it here.';
-  const wrap=document.getElementById('modalImgWrap');
-  wrap.innerHTML='';
-  const img=document.createElement('img');
-  img.src=c.img; img.style.cssText='width:100%;border-radius:12px;';
-  img.onerror=()=>{
-    wrap.innerHTML=`<div class="modal-cert-placeholder"><div class="big-icon">${c.icon}</div><p>Add your certificate image as <strong>${c.img}</strong> in your project folder.</p></div>`;
-  };
-  wrap.appendChild(img);
-  document.getElementById('certModal').classList.add('open');
+// THEME
+function toggleTheme(){
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+  localStorage.setItem('theme',h.getAttribute('data-theme'));
 }
-function closeModal(e){if(e.target===document.getElementById('certModal'))document.getElementById('certModal').classList.remove('open');}
+(()=>{const t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
 
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{
-  if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*60);obs.unobserve(e.target);}
-}),{threshold:0.07});
+// MOBILE MENU
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+window.addEventListener('resize',()=>{
+  document.getElementById('mobileTheme').style.display=window.innerWidth<=768?'block':'none';
+});
+if(window.innerWidth<=768)document.getElementById('mobileTheme').style.display='block';
+
+// ZOOM
+document.querySelectorAll('.zoom-wrap').forEach(sec=>{
+  const c=sec.querySelector('.zoom-content');
+  if(!c)return;
+  function u(){
+    const r=sec.getBoundingClientRect(),tot=sec.offsetHeight-window.innerHeight;
+    if(tot<=0)return;
+    const p=Math.max(0,Math.min(1,-r.top/tot));
+    c.style.transform=`scale(${0.65+p*0.35})`;
+    c.style.opacity=p<0.12?p/0.12:p>0.82?(1-p)/0.18:1;
+  }
+  window.addEventListener('scroll',u,{passive:true});u();
+});
+
+// VISITOR COUNTER
+(()=>{
+  const KEY='laeeq_visitors',SK='laeeq_session';
+  let count=parseInt(localStorage.getItem(KEY)||'1248');
+  if(!sessionStorage.getItem(SK)){count+=1;localStorage.setItem(KEY,count);sessionStorage.setItem(SK,'1');}
+  const el=document.getElementById('visitorCount');
+  const obs=new IntersectionObserver(entries=>{
+    if(!entries[0].isIntersecting)return;
+    obs.disconnect();
+    let cur=Math.max(0,count-50);
+    const step=()=>{if(cur<count){cur++;el.textContent=cur.toLocaleString();requestAnimationFrame(step);}else el.textContent=count.toLocaleString();};
+    step();
+  },{threshold:.3});
+  obs.observe(el);
+})();
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*60);obs.unobserve(e.target);}
+  });
+},{threshold:.07});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
