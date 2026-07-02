@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -122,9 +123,14 @@ nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav);backdrop-f
 .stags{display:flex;flex-wrap:wrap;gap:.3rem;}
 .stag{font-size:.68rem;padding:2px 9px;border-radius:980px;background:var(--bg2);border:.5px solid var(--border);color:var(--text2);}
 
-/* CERTS */
+/* CERTS + COURSES (merged) */
 #certifications{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
+.cert-progress-wrap{max-width:620px;margin:0 auto clamp(2rem,5vw,3rem);padding:0 1.5rem;}
+.cert-progress-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text2);margin-bottom:.55rem;}
+.cert-progress-label strong{color:var(--text);}
+.cert-progress-bar{height:8px;border-radius:980px;background:var(--bg2);overflow:hidden;border:.5px solid var(--border);}
+.cert-progress-fill{height:100%;border-radius:980px;background:linear-gradient(90deg,var(--blue),#5e5ce6);width:0%;transition:width 1.4s cubic-bezier(.16,1,.3,1);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
 .cert-tile{background:var(--bg);padding:1.5rem;transition:background .2s;}
 .cert-tile:hover{background:var(--bg2);}
 .cert-badge-icon{font-size:2rem;margin-bottom:.75rem;}
@@ -142,17 +148,8 @@ nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav);backdrop-f
 .edu-school{font-size:.8rem;color:var(--blue);margin:.2rem 0;}
 .edu-yr{font-size:.72rem;color:var(--text3);}
 
-/* COURSES */
-#courses{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
-.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
-.course-tile{background:var(--bg);padding:1.25rem;display:flex;gap:.75rem;align-items:flex-start;transition:background .2s;}
-.course-tile:hover{background:var(--bg2);}
-.cicon{font-size:1.3rem;flex-shrink:0;}
-.cname{font-size:.8rem;font-weight:600;color:var(--text);margin-bottom:.15rem;}
-.cprov{font-size:.68rem;color:var(--text3);}
-
 /* INDUSTRIES */
-#industries{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
+#industries{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
 .ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
 .ind-tile{background:var(--bg);padding:1.5rem;transition:background .2s;}
 .ind-tile:hover{background:var(--bg2);}
@@ -161,7 +158,7 @@ nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav);backdrop-f
 .ind-desc{font-size:.72rem;color:var(--text3);line-height:1.5;}
 
 /* PROJECTS */
-#projects{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
+#projects{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
 .proj-tile{background:var(--bg);padding:1.75rem;transition:background .2s;}
 .proj-tile:hover{background:var(--bg2);}
@@ -176,20 +173,34 @@ nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav);backdrop-f
 [data-theme="dark"] .pbadge-green{background:rgba(52,199,89,.15);color:#34c759;}
 [data-theme="dark"] .pbadge-blue{background:rgba(41,151,255,.12);color:#2997ff;}
 
-/* RECS */
-#recommendations{padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);}
-.rec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:980px;margin:0 auto;}
-.rec-card{background:var(--bg);border-radius:18px;padding:1.5rem;border:.5px solid var(--border);transition:transform .2s,box-shadow .2s;}
-.rec-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08);}
-.rec-q{font-size:2rem;color:var(--blue);line-height:1;margin-bottom:.6rem;}
-.rec-text{font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:1rem;font-style:italic;}
-.rec-person{display:flex;align-items:center;gap:.65rem;}
-.rec-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.75rem;flex-shrink:0;}
-.rec-nm{font-size:.78rem;font-weight:600;color:var(--text);}
-.rec-rl{font-size:.68rem;color:var(--text3);}
+/* CAROUSEL */
+#recommendations{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
+.carousel-outer{max-width:1100px;margin:0 auto;padding:0 1.5rem;position:relative;}
+.carousel-viewport{overflow:hidden;position:relative;cursor:grab;}
+.carousel-viewport.dragging{cursor:grabbing;}
+.carousel-track{display:flex;align-items:stretch;will-change:transform;}
+.carousel-slide{flex:0 0 calc(100%/3);padding:.5rem .65rem;box-sizing:border-box;}
+.rec-card{background:var(--bg);border-radius:18px;padding:1.25rem 1.4rem;border:.5px solid var(--border);display:flex;flex-direction:column;gap:.5rem;transition:box-shadow .3s,transform .3s,opacity .3s,border-color .3s;opacity:.5;transform:scale(.91);min-height:0;}
+.carousel-slide.is-center .rec-card{opacity:1;transform:scale(1);box-shadow:0 12px 40px rgba(0,0,0,.13);border-color:var(--blue);}
+[data-theme="dark"] .carousel-slide.is-center .rec-card{box-shadow:0 12px 40px rgba(0,113,227,.22);}
+.rec-q{font-size:1.6rem;color:var(--blue);line-height:1;}
+.rec-text{font-size:.78rem;color:var(--text2);line-height:1.65;font-style:italic;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
+.carousel-slide.is-center .rec-text{-webkit-line-clamp:7;}
+.rec-person{display:flex;align-items:center;gap:.6rem;margin-top:auto;padding-top:.5rem;border-top:.5px solid var(--border);}
+.rec-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.72rem;flex-shrink:0;}
+.rec-nm{font-size:.78rem;font-weight:700;color:var(--text);}
+.rec-rl{font-size:.65rem;color:var(--text3);}
+.rec-date{font-size:.62rem;color:var(--text3);margin-top:.1rem;}
+.carousel-controls{display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-top:1.25rem;}
+.carousel-btn{width:40px;height:40px;border-radius:50%;border:.5px solid var(--border);background:var(--bg);color:var(--text);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1;}
+.carousel-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.carousel-dots{display:flex;gap:.45rem;align-items:center;}
+.cdot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .3s;}
+.cdot.active{background:var(--blue);width:20px;border-radius:4px;}
+@media(max-width:680px){.carousel-slide{flex:0 0 100%;}}
 
 /* FAQ */
-#faq{padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg);}
+#faq{padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);}
 .faq-inner{max-width:720px;margin:0 auto;}
 .faq-item{border-bottom:.5px solid var(--border);}
 .faq-q{width:100%;background:none;border:none;text-align:left;padding:1.1rem 0;font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:'Inter',sans-serif;}
@@ -200,13 +211,16 @@ nav{position:fixed;top:0;width:100%;z-index:999;background:var(--nav);backdrop-f
 .faq-a p{font-size:.83rem;color:var(--text2);line-height:1.8;padding-bottom:1.1rem;}
 
 /* CONTACT */
-#contact{padding:clamp(60px,10vw,100px) 0;background:var(--bg2);}
+#contact{padding:clamp(60px,10vw,100px) 0;background:var(--bg);}
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5px;background:var(--border);max-width:980px;margin:0 auto;}
 .c-tile{background:var(--bg);padding:1.5rem;text-align:center;transition:background .2s;display:block;color:inherit;}
 .c-tile:hover{background:var(--bg2);}
 .c-icon{font-size:1.4rem;margin-bottom:.4rem;}
 .c-lbl{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:.25rem;}
 .c-val{font-size:.75rem;color:var(--text);font-weight:500;word-break:break-all;}
+.c-avail{max-width:980px;margin:1.5rem auto 0;text-align:center;}
+.c-avail-inner{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;color:var(--blue);background:var(--bg2);border:.5px solid var(--border);padding:.55rem 1.2rem;border-radius:980px;}
+.c-avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;flex-shrink:0;}
 
 /* VISITOR */
 #visitors{background:#1d1d1f;padding:3rem 1.5rem;text-align:center;}
@@ -267,7 +281,7 @@ footer p{font-size:.7rem;color:var(--text3);}
       <li><a href="#profile">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#certifications">Certs &amp; Courses</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#recommendations">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -284,7 +298,7 @@ footer p{font-size:.7rem;color:var(--text3);}
   <a href="#profile" onclick="closeMenu()">About</a>
   <a href="#experience" onclick="closeMenu()">Experience</a>
   <a href="#skills" onclick="closeMenu()">Skills</a>
-  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#certifications" onclick="closeMenu()">Certs &amp; Courses</a>
   <a href="#projects" onclick="closeMenu()">Projects</a>
   <a href="#recommendations" onclick="closeMenu()">Reviews</a>
   <a href="#faq" onclick="closeMenu()">FAQ</a>
@@ -529,32 +543,38 @@ footer p{font-size:.7rem;color:var(--text3);}
   </div>
 </div>
 
-<!-- CERTS -->
-<div id="certifications" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
-  <div class="sec-hd reveal"><div class="sec-eyebrow">Credentials</div><h2 class="sec-title">Certifications</h2></div>
+<!-- CERTIFICATIONS & COURSES (merged) -->
+<div id="certifications">
+  <div class="sec-hd reveal"><div class="sec-eyebrow">Credentials &amp; Training</div><h2 class="sec-title">Certifications &amp; Courses</h2></div>
+
+  <div class="cert-progress-wrap reveal">
+    <div class="cert-progress-label"><span><strong>10 of 11</strong> Completed / Verified</span><span>CISSP In Progress</span></div>
+    <div class="cert-progress-bar"><div class="cert-progress-fill" id="certProgressFill"></div></div>
+  </div>
+
   <div class="cert-grid">
 
     <div class="cert-tile reveal">
       <img src="https://github.com/laeequrr/laeequrr.github.io/blob/main/1-associate-logo.png?raw=true" alt="NSE 1" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🛡️</div>'"/>
       <div class="cert-name">Network Security Associate — NSE 1</div>
-      <div class="cert-issuer">Fortinet</div>
-      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Issued May 2021</div>
+      <div class="cert-issuer">Fortinet Training Institute</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · May 2021</div>
       <span class="chip chip-ok">✓ Verified</span>
     </div>
 
     <div class="cert-tile reveal">
       <img src="https://github.com/laeequrr/laeequrr.github.io/blob/main/2-associate-logo.png?raw=true" alt="NSE 2" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🛡️</div>'"/>
       <div class="cert-name">Network Security Expert Level 2: Certified Associate — NSE 2</div>
-      <div class="cert-issuer">Fortinet</div>
-      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Issued Jun 2021</div>
+      <div class="cert-issuer">Fortinet Training Institute</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · Jun 2021</div>
       <span class="chip chip-ok">✓ Verified</span>
     </div>
 
     <div class="cert-tile reveal">
       <img src="https://images.credly.com/size/340x340/images/62bbd4cd-0ef3-450d-9d9b-160676e9dc47/blob" alt="Jamf Certified Associate" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🍎</div>'"/>
       <div class="cert-name">Jamf Certified Associate — Jamf Pro</div>
-      <div class="cert-issuer">Jamf</div>
-      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Issued Feb 2026</div>
+      <div class="cert-issuer">JAMF Software</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · Feb 2026</div>
       <span class="chip chip-ok">✓ Verified</span>
     </div>
 
@@ -562,24 +582,56 @@ footer p{font-size:.7rem;color:var(--text3);}
       <img src="https://learn.microsoft.com/learn/achievements/build-cybersecurity-resilience-k-12-classrooms-microsoft-tools.svg" alt="Microsoft Cybersecurity K-12" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🔵</div>'"/>
       <div class="cert-name">Build Cybersecurity Resilience in K-12 Classrooms with Microsoft Tools</div>
       <div class="cert-issuer">Microsoft Learn</div>
-      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Completed 21 Aug 2025</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · 21 Aug 2025</div>
       <span class="chip chip-ok">✓ Completed</span>
     </div>
 
     <div class="cert-tile reveal">
-      <div class="cert-badge-icon">🛡️</div>
-      <div class="cert-name">Child Protection 2025</div>
-      <div class="cert-issuer">Tes</div>
-      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Issued May 2026</div>
+      <img src="https://training.fortinet.com/pluginfile.php/1/local_cert/badgeimages/85/badge_16abd220-eac0-469f-b15f-300c9d97a343.png" alt="Certified Associate in Cybersecurity" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🔐</div>'"/>
+      <div class="cert-name">Certified Associate in Cybersecurity</div>
+      <div class="cert-issuer">Fortinet Training Institute</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · Jun 2026</div>
       <span class="chip chip-ok">✓ Verified</span>
     </div>
 
     <div class="cert-tile reveal">
-      <div class="cert-badge-icon">🔒</div>
+      <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/pluralsight.png" alt="Microsoft 365 Security, Compliance, and Identity Concepts" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🔵</div>'"/>
+      <div class="cert-name">Microsoft 365 Security, Compliance, and Identity Concepts</div>
+      <div class="cert-issuer">Pluralsight</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · Jul 2025</div>
+      <span class="chip chip-ok">✓ Completed</span>
+    </div>
+
+    <div class="cert-tile reveal">
+      <img src="https://portal.cpduk.co.uk/storage/7flHSR3rX6FKC22iWZ9InHdmGEqw9LQ7Def0Bm5Z.jpg" alt="International Data Protection: Education" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🔒</div>'"/>
       <div class="cert-name">International Data Protection: Education</div>
       <div class="cert-issuer">Tes</div>
-      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Issued May 2026</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Badge earned · May 2026</div>
       <span class="chip chip-ok">✓ Verified</span>
+    </div>
+
+    <div class="cert-tile reveal">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu4P0YyXCPWkC6lg7_BEtnoX2G-gwXTR70nksrFhfY_Q&s=10" alt="Data Protection & Privacy Foundations" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>🔐</div>'"/>
+      <div class="cert-name">Data Protection &amp; Privacy Foundations</div>
+      <div class="cert-issuer">9ine</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Course badge earned</div>
+      <span class="chip chip-ok">✓ Completed</span>
+    </div>
+
+    <div class="cert-tile reveal">
+      <img src="https://images.g2crowd.com/uploads/vendor/image/359/13bbb369c8268754a786f3dce328f6ce.jpeg" alt="Microsoft Intune & Azure AD Administration" style="width:60px;height:60px;object-fit:contain;margin-bottom:.75rem;" onerror="this.outerHTML='<div class=\'cert-badge-icon\'>☁️</div>'"/>
+      <div class="cert-name">Microsoft Intune &amp; Azure AD Administration</div>
+      <div class="cert-issuer">Microsoft</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Course badge earned</div>
+      <span class="chip chip-ok">✓ Completed</span>
+    </div>
+
+    <div class="cert-tile reveal">
+      <div class="cert-badge-icon">📋</div>
+      <div class="cert-name">ITIL-Aligned Service Management</div>
+      <div class="cert-issuer">Applied across enterprise environments</div>
+      <div style="font-size:.68rem;color:var(--text3);margin-bottom:.4rem;">Practical application badge</div>
+      <span class="chip chip-ok">✓ Completed</span>
     </div>
 
     <div class="cert-tile reveal">
@@ -626,21 +678,8 @@ footer p{font-size:.7rem;color:var(--text3);}
   </div>
 </div>
 
-<!-- COURSES -->
-<div id="courses" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
-  <div class="sec-hd reveal"><div class="sec-eyebrow">Training</div><h2 class="sec-title">Courses</h2></div>
-  <div class="course-grid">
-    <div class="course-tile reveal"><div class="cicon">🛡️</div><div><div class="cname">Network Security Associate NSE1 &amp; NSE2</div><div class="cprov">Fortinet Training Institute</div></div></div>
-    <div class="course-tile reveal"><div class="cicon">🔒</div><div><div class="cname">Data Protection &amp; Privacy</div><div class="cprov">UAE Data Protection Authority</div></div></div>
-    <div class="course-tile reveal"><div class="cicon">🍎</div><div><div class="cname">JAMF Associate Certification</div><div class="cprov">JAMF Software</div></div></div>
-    <div class="course-tile reveal"><div class="cicon">☁️</div><div><div class="cname">Microsoft Intune &amp; Azure AD Administration</div><div class="cprov">Microsoft</div></div></div>
-    <div class="course-tile reveal"><div class="cicon">🔑</div><div><div class="cname">CISSP — In Progress</div><div class="cprov">ISC²</div></div></div>
-    <div class="course-tile reveal"><div class="cicon">📋</div><div><div class="cname">ITIL-Aligned Service Management</div><div class="cprov">Applied across enterprise environments</div></div></div>
-  </div>
-</div>
-
 <!-- INDUSTRIES -->
-<div id="industries" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg2);">
+<div id="industries" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
   <div class="sec-hd reveal"><div class="sec-eyebrow">Sectors</div><h2 class="sec-title">Industries</h2></div>
   <div class="ind-grid">
     <div class="ind-tile reveal"><div class="ind-icon">🏫</div><div class="ind-name">Education</div><div class="ind-desc">JESS, Repton Dubai, Ranches Primary, AlNajah Education</div></div>
@@ -653,7 +692,7 @@ footer p{font-size:.7rem;color:var(--text3);}
 </div>
 
 <!-- PROJECTS -->
-<div id="projects" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg);">
+<div id="projects" style="padding:clamp(60px,10vw,100px) 0;background:var(--bg2);">
   <div class="sec-hd reveal"><div class="sec-eyebrow">Key Achievements</div><h2 class="sec-title">Projects Delivered</h2></div>
   <div class="proj-grid">
     <div class="proj-tile reveal"><div class="proj-icon">🔄</div><div class="proj-org">Jumeirah English Speaking School</div><div class="proj-name">MDM Migration — Mosyle to Jamf Pro</div><p class="proj-desc">Led the complete migration of all student and staff devices from Mosyle to Jamf Pro. Managed re-enrolment, policy reconfiguration and app deployment with zero disruption to teaching.</p><div class="proj-badges"><span class="pbadge pbadge-green">✓ Zero Disruption</span><span class="pbadge pbadge-blue">Jamf Pro · Mosyle · MDM</span></div></div>
@@ -675,12 +714,96 @@ footer p{font-size:.7rem;color:var(--text3);}
 </div>
 
 <!-- RECS -->
-<div id="recommendations" style="padding:clamp(60px,10vw,100px) 1.5rem;background:var(--bg2);">
+<div id="recommendations">
   <div class="sec-hd reveal"><div class="sec-eyebrow">Testimonials</div><h2 class="sec-title">Recommendations</h2></div>
-  <div class="rec-grid">
-    <div class="rec-card reveal"><div class="rec-q">"</div><p class="rec-text">Laeeq is one of the most capable IT Managers I've worked with. His ability to reduce incident resolution times while maintaining near-perfect uptime was exceptional. A true professional who leads by example.</p><div class="rec-person"><div class="rec-av" style="background:linear-gradient(135deg,#003087,#0071e3);">ZM</div><div><div class="rec-nm">Zeeshan Mazhar</div><div class="rec-rl">IT Manager · Cognita Schools</div></div></div></div>
-    <div class="rec-card reveal"><div class="rec-q">"</div><p class="rec-text">Laeeq designed and delivered our complete IT infrastructure from scratch. His technical expertise and calm professional approach under pressure made him an invaluable asset to our operations.</p><div class="rec-person"><div class="rec-av" style="background:linear-gradient(135deg,#00b4d8,#0077b6);">IR</div><div><div class="rec-nm">Islam Rahim</div><div class="rec-rl">Operations Manager · Tasheel DIP</div></div></div></div>
-    <div class="rec-card reveal"><div class="rec-q">"</div><p class="rec-text">Working with Laeeq was a genuine pleasure. He managed IT support across our schools with great efficiency and his documentation and SOPs were truly outstanding.</p><div class="rec-person"><div class="rec-av" style="background:linear-gradient(135deg,#2ecc71,#1abc9c);">SM</div><div><div class="rec-nm">Soumya Mathew</div><div class="rec-rl">HR Manager · AlNajah Education</div></div></div></div>
+  <div class="carousel-outer reveal">
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carTrack">
+
+        <div class="carousel-slide" data-idx="0">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">Laeeq is a dedicated, dependable, and highly skilled IT professional who consistently demonstrates a strong commitment to delivering reliable technology solutions. He possesses excellent technical expertise, coupled with a proactive approach to problem-solving. What sets Laeeq apart is his calm and professional attitude, even in high-pressure situations. He is always willing to support colleagues, share his knowledge, and collaborate effectively across teams. Beyond his technical capabilities, Laeeq is a person of integrity with a positive work ethic and excellent interpersonal skills.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#5e5ce6,#003087);">MW</div>
+              <div><div class="rec-nm">Dr. Mohammed M. Waseem, Ph.D.</div><div class="rec-rl">Senior IT Engineer · Repton Dubai</div><div class="rec-date">June 2026 · Same team</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-idx="1">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">A hard working, caring and supportive person, Laeeq was a pleasure to work with.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#007aff,#34aadc);">SM</div>
+              <div><div class="rec-nm">Sean McDermott</div><div class="rec-rl">Deputy Head · Repton Dubai</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-idx="2">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">Laeeq was a dedicated student who approached his coursework with genuine effort and a positive attitude. He was consistent in engaging with challenging concepts and always reliable when it came to meeting deadlines. He earned a B+ grade across both Theory of Automata and Data Structures &amp; Algorithms, demonstrating a solid grasp of core computer science fundamentals. I am happy to recommend Laeeq to anyone looking for a hardworking and dependable individual.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#2ecc71,#1abc9c);">MT</div>
+              <div><div class="rec-nm">Muhammad Tahir</div><div class="rec-rl">Assistant Professor · CUSIT, Peshawar</div><div class="rec-date">Taught Theory of Automata &amp; DSA · 2015</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-idx="3">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">Laeeq is one of the most capable IT Managers I've worked with. His ability to reduce incident resolution times while maintaining near-perfect uptime was exceptional. A true professional who leads by example.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#003087,#0071e3);">ZM</div>
+              <div><div class="rec-nm">Zeeshan Mazhar</div><div class="rec-rl">IT Manager · Cognita Schools</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-idx="4">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">Laeeq designed and delivered our complete IT infrastructure from scratch. His technical expertise across government systems and calm professional approach under pressure made him an invaluable asset to our operations.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#00b4d8,#0077b6);">IR</div>
+              <div><div class="rec-nm">Islam Rahim</div><div class="rec-rl">Operations Manager · Tasheel DIP</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-idx="5">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">Working with Laeeq was a genuine pleasure. He managed IT support across our schools with great efficiency and always ensured staff had the tools they needed. His documentation and SOPs were truly outstanding.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#2ecc71,#1abc9c);">SM</div>
+              <div><div class="rec-nm">Soumya Mathew</div><div class="rec-rl">HR Manager · AlNajah Education</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide" data-idx="6">
+          <div class="rec-card">
+            <div class="rec-q">"</div>
+            <p class="rec-text">Laeeq is a dedicated and skilled IT engineer. He's a proactive problem-solver.</p>
+            <div class="rec-person">
+              <div class="rec-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">WA</div>
+              <div><div class="rec-nm">Waqar Abbas Khan</div><div class="rec-rl">Public Service Specialist · Amerservices</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="carMove(-1)">←</button>
+      <div class="carousel-dots" id="carDots"></div>
+      <button class="carousel-btn" onclick="carMove(1)">→</button>
+    </div>
   </div>
 </div>
 
@@ -692,10 +815,9 @@ footer p{font-size:.7rem;color:var(--text3);}
     <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What Microsoft technologies do you specialise in?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Full Microsoft 365 ecosystem: Azure Active Directory, Microsoft Intune, SharePoint Online, Exchange Online, Microsoft Teams and Endpoint Manager. I have led multiple M365 tenant migrations and managed large Intune device fleets.</p></div></div>
     <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Have you managed large-scale migrations?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Yes — M365 tenant migrations for Repton Dubai and Ranches Primary School with zero downtime, and a full MDM migration from Mosyle to Jamf Pro at JESS with zero disruption to teaching and learning.</p></div></div>
     <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Are you open to roles outside education?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Absolutely. My experience spans government IT, hospitality and corporate environments. My Microsoft cloud, cybersecurity, infrastructure and leadership skills are highly transferable across all sectors.</p></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What certifications do you hold?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Fortinet NSE1 &amp; NSE2, UAE Data Protection Certification and JAMF Associate. Currently working toward CISSP from ISC².</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What certifications do you hold?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Fortinet NSE1 &amp; NSE2, Data Protection &amp; Privacy Foundations (9ine), International Data Protection: Education (Tes) and JAMF Associate. Currently working toward CISSP from ISC².</p></div></div>
     <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">What is your availability and visa status?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Based in Dubai on a valid Employment/Resident Visa. Open to new opportunities — reachable at Laeequrr@gmail.com or +971 58 829 4006.</p></div></div>
     <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Do you have experience with Apple device management?<span class="faq-arrow">▾</span></button><div class="faq-a"><p>Extensive experience managing 1,200+ Apple devices using Jamf Pro and Mosyle MDM, Apple School Manager and full device lifecycle management. I hold the JAMF Associate certification.</p></div></div>
-   
   </div>
 </div>
 
@@ -707,6 +829,9 @@ footer p{font-size:.7rem;color:var(--text3);}
     <div class="c-tile reveal"><div class="c-icon">📱</div><div class="c-lbl">Phone</div><div class="c-val">+971 58 829 4006</div></div>
     <div class="c-tile reveal"><div class="c-icon">📍</div><div class="c-lbl">Location</div><div class="c-val">Dubai, UAE</div></div>
     <a href="https://www.linkedin.com/in/laeequrr/" target="_blank" class="c-tile reveal"><div class="c-icon">💼</div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/laeequrr</div></a>
+  </div>
+  <div class="c-avail reveal">
+    <span class="c-avail-inner"><span class="c-avail-dot"></span>Available for Remote Work or Relocation</span>
   </div>
 </div>
 
@@ -739,7 +864,7 @@ footer p{font-size:.7rem;color:var(--text3);}
   <div class="footer-name">Laeeq Ur Rehman</div>
   <div class="footer-links">
     <a href="#profile">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a>
-    <a href="#certifications">Certs</a><a href="#skills">Skills</a>
+    <a href="#certifications">Certs &amp; Courses</a><a href="#skills">Skills</a>
     <a href="#recommendations">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
   </div>
   <p>IT Manager · Dubai, UAE · © 2025 · All rights reserved</p>
@@ -874,7 +999,7 @@ document.querySelectorAll('.zoom-wrap').forEach(function(sec){
 
 // ACTIVE NAV
 (function(){
-  var map=[['hero','#profile'],['profile','#profile'],['experience','#experience'],['skills','#skills'],['courses','#skills'],['certifications','#certifications'],['industries','#certifications'],['projects','#projects'],['recommendations','#recommendations'],['faq','#faq'],['contact','#contact']];
+  var map=[['hero','#profile'],['profile','#profile'],['experience','#experience'],['skills','#skills'],['certifications','#certifications'],['industries','#certifications'],['projects','#projects'],['recommendations','#recommendations'],['faq','#faq'],['contact','#contact']];
   var lks=document.querySelectorAll('.nav-links a');
   function upd(){
     var act='#profile';
@@ -892,6 +1017,18 @@ function toggleFaq(btn){
   if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
 }
 
+// CERT PROGRESS BAR (animate to target width when scrolled into view)
+(function(){
+  var fill=document.getElementById('certProgressFill');
+  if(!fill)return;
+  var target=Math.round((10/11)*100)+'%';
+  new IntersectionObserver(function(en,ob){
+    if(!en[0].isIntersecting)return;
+    ob.disconnect();
+    setTimeout(function(){fill.style.width=target;},150);
+  },{threshold:.3}).observe(fill);
+})();
+
 // VISITOR
 (function(){
   var K='laeeq_v',S='laeeq_s';
@@ -907,13 +1044,103 @@ function toggleFaq(btn){
 })();
 
 // SCROLL REVEAL
-new IntersectionObserver(function(en){
-  en.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('v');},i*60);this.unobserve(e.target);}},this);
-},{threshold:.07}).observe&&document.querySelectorAll('.reveal').forEach(function(el){
+document.querySelectorAll('.reveal').forEach(function(el){
   new IntersectionObserver(function(en,ob){if(en[0].isIntersecting){en[0].target.classList.add('v');ob.unobserve(en[0].target);}},{threshold:.07}).observe(el);
 });
 
-// WHATSAPP
+// CAROUSEL — 3-up centre-focus infinite loop
+(function(){
+  var track=document.getElementById('carTrack');
+  if(!track)return;
+  var dotsWrap=document.getElementById('carDots');
+  var origSlides=Array.from(track.querySelectorAll('.carousel-slide'));
+  var total=origSlides.length;
+  var cur=0; // logical index into origSlides
+  var timer;
+  var isMobile=window.innerWidth<=680;
+
+  // Build infinite clone set: [...clones_end, ...originals, ...clones_start]
+  var cloneCount=isMobile?1:2;
+  function buildTrack(){
+    isMobile=window.innerWidth<=680;
+    cloneCount=isMobile?1:2;
+    // remove existing clones
+    track.querySelectorAll('.carousel-clone').forEach(function(c){c.remove();});
+    // prepend last N originals
+    for(var i=cloneCount-1;i>=0;i--){
+      var c=origSlides[(total-1-i+total)%total].cloneNode(true);
+      c.classList.add('carousel-clone');
+      track.insertBefore(c,track.firstChild);
+    }
+    // append first N originals
+    for(var i=0;i<cloneCount;i++){
+      var c=origSlides[i%total].cloneNode(true);
+      c.classList.add('carousel-clone');
+      track.appendChild(c);
+    }
+    render(false);
+  }
+
+  function getAllSlides(){return Array.from(track.querySelectorAll('.carousel-slide'));}
+
+  function render(animate){
+    var slides=getAllSlides();
+    var perView=isMobile?1:3;
+    var centerOffset=isMobile?0:1; // index offset for center
+    var realIndex=cur+cloneCount; // position in full (cloned) array
+    if(!animate)track.style.transition='none';
+    else track.style.transform=''; // let CSS handle
+    var slideW=100/slides.length;
+    track.style.width=(slides.length*100/perView)+'%';
+    slides.forEach(function(s){s.style.flex='0 0 '+slideW+'%';});
+    // offset so center slide is in middle of viewport
+    var offset=-(realIndex-centerOffset)*(100/slides.length);
+    track.style.transition=animate?'transform .55s cubic-bezier(.4,0,.2,1)':'none';
+    track.style.transform='translateX('+offset+'%)';
+    // highlight center
+    slides.forEach(function(s,i){s.classList.toggle('is-center',i===realIndex);});
+    // dots
+    if(dotsWrap){
+      dotsWrap.querySelectorAll('.cdot').forEach(function(d,i){d.classList.toggle('active',i===cur);});
+    }
+  }
+
+  // build dots for real slides only
+  for(var i=0;i<total;i++){
+    var d=document.createElement('div');
+    d.className='cdot'+(i===0?' active':'');
+    (function(idx){d.addEventListener('click',function(){goTo(idx);resetTimer();});})(i);
+    dotsWrap.appendChild(d);
+  }
+
+  function goTo(n,animate){
+    cur=((n%total)+total)%total;
+    render(animate!==false);
+  }
+
+  // After transition ends, silently jump if on a clone
+  track.addEventListener('transitionend',function(){
+    var slides=getAllSlides();
+    var realIndex=cur+cloneCount;
+    var perView=isMobile?1:3;
+    var centerOffset=isMobile?0:1;
+    if(realIndex<cloneCount){cur=total-1;render(false);}
+    else if(realIndex>=total+cloneCount){cur=0;render(false);}
+  });
+
+  function resetTimer(){clearInterval(timer);timer=setInterval(function(){goTo(cur+1);},5000);}
+
+  window.carMove=function(dir){goTo(cur+dir);resetTimer();};
+
+  window.addEventListener('resize',function(){
+    var wasMobile=isMobile;
+    isMobile=window.innerWidth<=680;
+    if(isMobile!==wasMobile){buildTrack();}
+  });
+
+  buildTrack();
+  resetTimer();
+})();
 var _waOpen=false;
 function toggleWa(){_waOpen=!_waOpen;document.getElementById('waBubble').classList.toggle('show',_waOpen);document.querySelector('.wa-ping').style.display='none';}
 function closeWa(){_waOpen=false;document.getElementById('waBubble').classList.remove('show');}
